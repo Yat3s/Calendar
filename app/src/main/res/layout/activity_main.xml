@@ -4,25 +4,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context="com.yat3s.calendar.MainActivity">
 
-
     <FrameLayout
+        android:id="@+id/calendar_layout"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"/>
 
-        <android.support.v7.widget.RecyclerView
-            android:id="@+id/recycler_view"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"/>
 
-        <TextView
-            android:id="@+id/header_tv"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@color/md_grey_200"
-            android:textColor="@color/md_black_1000"
-            android:padding="8dp"/>
-    </FrameLayout>
 
 </LinearLayout>
