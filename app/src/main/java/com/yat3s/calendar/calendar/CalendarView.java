@@ -118,9 +118,10 @@ public class CalendarView extends FrameLayout {
                 mDy = dy;
                 Log.d(TAG, "mTotalDy: " + mTotalDy);
                 Log.d(TAG, "mDy: " + mDy);
+                Log.d(TAG, "mLastVisibleItemPosition: " + mLastVisibleItemPosition);
+
                 mLastVisibleItemPosition = mGridLayoutManager.findLastVisibleItemPosition();
                 mFirstVisibleItemPosition = mGridLayoutManager.findFirstVisibleItemPosition();
-                Log.d(TAG, "mLastVisibleItemPosition: " + mLastVisibleItemPosition);
                 if (mCurrentScrollState == RecyclerView.SCROLL_STATE_DRAGGING) {
                     expand();
                 }
@@ -222,7 +223,6 @@ public class CalendarView extends FrameLayout {
      */
     public void fold() {
         if (isExpand) {
-            Log.d(TAG, "fold: ");
             final AnimateViewWrapper animateViewWrapper = new AnimateViewWrapper(mCalendarRv);
             animateViewWrapper.animateHeight(mNarrowCalenderRecyclerViewHeight);
             isExpand = false;

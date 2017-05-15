@@ -10,8 +10,6 @@ import com.yat3s.calendar.R;
 import com.yat3s.calendar.common.widget.BaseAdapter;
 import com.yat3s.calendar.common.widget.BaseViewHolder;
 
-import static android.R.string.no;
-
 /**
  * Created by Yat3s on 14/05/2017.
  * Email: hawkoyates@gmail.com
@@ -74,10 +72,10 @@ public class CalendarAdapter extends BaseAdapter<Day> {
     public void updateCurrentSelectedItem(int selectedPosition) {
         if (mLastSelectedPosition != selectedPosition) {
             getDataSource().get(selectedPosition).isSelected = true;
-//            notifyItemChanged(selectedPosition);
-            if(mLastSelectedPosition != -1) {
+            notifyItemChanged(selectedPosition);
+            if (mLastSelectedPosition != -1) {
                 getDataSource().get(mLastSelectedPosition).isSelected = false;
-//                notifyItemChanged(mLastSelectedPosition);
+                notifyItemChanged(mLastSelectedPosition);
             }
             mLastSelectedPosition = selectedPosition;
         }
