@@ -90,7 +90,7 @@ public class CalendarFragment extends BaseFragment {
             @Override
             public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
                 super.onScrollStateChanged(recyclerView, newState);
-                mCalendarView.close();
+                mCalendarView.fold();
             }
         });
 
@@ -100,7 +100,7 @@ public class CalendarFragment extends BaseFragment {
         mFab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                mCalendarView.open();
+                mCalendarView.expand();
             }
         });
     }

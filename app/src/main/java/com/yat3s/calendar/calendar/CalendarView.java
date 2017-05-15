@@ -118,7 +118,7 @@ public class CalendarView extends FrameLayout {
                     Log.d(TAG, "mLastVisibleItemPosition: " + mLastVisibleItemPosition);
                 }
                 if (mCurrentScrollState == RecyclerView.SCROLL_STATE_DRAGGING) {
-                    open();
+                    expand();
                 }
             }
 
@@ -205,7 +205,7 @@ public class CalendarView extends FrameLayout {
     /**
      * Expand calender view height to {@link #CALENDAR_EXPANSION_ROW}
      */
-    public void open() {
+    public void expand() {
         if (!isExpand) {
             final AnimateViewWrapper animateViewWrapper = new AnimateViewWrapper(mCalendarRv);
             animateViewWrapper.animateHeight(mExpandCalenderRecyclerViewHeight);
@@ -214,11 +214,11 @@ public class CalendarView extends FrameLayout {
     }
 
     /**
-     * Resize calender view height to {@link #CALENDAR_FOLD_ROW}
+     * Fold calender view height to {@link #CALENDAR_FOLD_ROW}
      */
-    public void close() {
+    public void fold() {
         if (isExpand) {
-            Log.d(TAG, "close: ");
+            Log.d(TAG, "fold: ");
             final AnimateViewWrapper animateViewWrapper = new AnimateViewWrapper(mCalendarRv);
             animateViewWrapper.animateHeight(mNarrowCalenderRecyclerViewHeight);
             isExpand = false;
