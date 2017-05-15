@@ -16,7 +16,7 @@ import com.yat3s.calendar.common.widget.BaseViewHolder;
  * GitHub: https://github.com/yat3s
  */
 public class CalendarAdapter extends BaseAdapter<Day> {
-    private int mLastSelectedPosition;
+    public int mLastSelectedPosition = -1;
 
     public CalendarAdapter(Context context) {
         super(context);
@@ -48,9 +48,16 @@ public class CalendarAdapter extends BaseAdapter<Day> {
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                // Cancel last selected item.
+                if (mLastSelectedPosition != position) {
+                    getDataSource().get(mLastSelectedPosition).isSelected = false;
+                    notifyItemChanged(mLastSelectedPosition);
+                    mLastSelectedPosition = position;
+                }
+
+                // Highlight item immediately.
                 day.isSelected = true;
                 updateItemSelectableUI(day, holder);
-                updateLastSelectedItem(position);
             }
         });
     }
@@ -62,10 +69,14 @@ public class CalendarAdapter extends BaseAdapter<Day> {
                 .setVisible(R.id.date_layout, !day.isSelected);
     }
 
-    public void updateLastSelectedItem(int selectedPosition) {
+    public void updateCurrentSelectedItem(int selectedPosition) {
         if (mLastSelectedPosition != selectedPosition) {
-            getDataSource().get(mLastSelectedPosition).isSelected = false;
-            notifyItemChanged(mLastSelectedPosition);
+            getDataSource().get(selectedPosition).isSelected = true;
+            notifyItemChanged(selectedPosition);
+            if(mLastSelectedPosition != -1) {
+                getDataSource().get(mLastSelectedPosition).isSelected = false;
+                notifyItemChanged(mLastSelectedPosition);
+            }
             mLastSelectedPosition = selectedPosition;
         }
     }

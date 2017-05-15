@@ -72,6 +72,7 @@ public class CalendarFragment extends BaseFragment {
                 super.onScrolled(recyclerView, dx, dy);
                 int lastPosition = mLinearLayoutManager.findLastCompletelyVisibleItemPosition();
                 int firstPosition = mLinearLayoutManager.findFirstVisibleItemPosition();
+                mCalendarView.updatedCurrentSelectedItem(firstPosition);
                 mHeader.setText("Section" + musicAdapter.getDataSource().get(firstPosition));
                 mTotalDy += dy;
                 if (firstPosition != mLastFirstPosition) {
@@ -84,8 +85,6 @@ public class CalendarFragment extends BaseFragment {
                 Log.d(TAG, "mTotalDy: " + mTotalDy);
                 Log.d(TAG, "dy: " + dy);
                 Log.d(TAG, "lastPosition: " + lastPosition);
-                Log.d(TAG, "computeScrollVectorForPosition: " + mLinearLayoutManager.computeScrollVectorForPosition
-                        (lastPosition - 1).toString());
             }
 
             @Override
@@ -96,7 +95,7 @@ public class CalendarFragment extends BaseFragment {
         });
 
         mCalendarView.setCalendarDataSource(generateCalendarDateList());
-        mCalendarView.close();
+        mCalendarView.updatedCurrentSelectedItem(0);
 
         mFab.setOnClickListener(new View.OnClickListener() {
             @Override

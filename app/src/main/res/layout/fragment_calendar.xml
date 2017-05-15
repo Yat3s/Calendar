@@ -31,6 +31,11 @@
                 android:background="@color/md_grey_200"
                 android:padding="8dp"
                 android:textColor="@color/md_black_1000"/>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="6dp"
+                android:background="@drawable/gradient_shadow"/>
         </FrameLayout>
     </LinearLayout>
 
