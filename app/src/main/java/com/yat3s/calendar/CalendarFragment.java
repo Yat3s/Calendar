@@ -1,14 +1,21 @@
 package com.yat3s.calendar;
 
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v7.widget.DividerItemDecoration;
+import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
+import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.TextView;
 
+import com.yat3s.calendar.widget.BaseAdapter;
+
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.GregorianCalendar;
 import java.util.List;
 
 import butterknife.BindView;
@@ -19,6 +26,7 @@ import butterknife.BindView;
  * GitHub: https://github.com/yat3s
  */
 public class CalendarFragment extends BaseFragment {
+    private static final int CALENDAR_SPAN = 7;
     private static final String TAG = "CalendarFragment";
 
     @BindView(R.id.calendar_view)
@@ -29,6 +37,9 @@ public class CalendarFragment extends BaseFragment {
 
     @BindView(R.id.header_tv)
     TextView mHeader;
+
+    @BindView(R.id.fab)
+    FloatingActionButton mFab;
 
     private LinearLayoutManager mLinearLayoutManager;
     private int mTotalDy = 0;
@@ -84,6 +95,27 @@ public class CalendarFragment extends BaseFragment {
                 super.onScrollStateChanged(recyclerView, newState);
             }
         });
+
+        final CalendarAdapter calendarAdapter = new CalendarAdapter(getContext(), generateCalendarDateList());
+        DividerItemDecoration divider = new DividerItemDecoration(getContext(), DividerItemDecoration.VERTICAL);
+        divider.setDrawable(getResources().getDrawable(R.drawable.shape_divider));
+        mCalendarView.setLayoutManager(new GridLayoutManager(getContext(), CALENDAR_SPAN));
+        mCalendarView.addItemDecoration(divider);
+        mCalendarView.setAdapter(calendarAdapter);
+
+        calendarAdapter.setOnItemClickListener(new BaseAdapter.OnItemClickListener<Day>() {
+            @Override
+            public void onClick(View view, Day day, int position) {
+            }
+        });
+
+        final AnimateViewWrapper animateViewWrapper = new AnimateViewWrapper(mCalendarView);
+        mFab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                animateViewWrapper.animateHeight(100, 500);
+            }
+        });
     }
 
 
@@ -103,5 +135,17 @@ public class CalendarFragment extends BaseFragment {
             mockData.add(String.valueOf(idx));
         }
         return mockData;
+    }
+
+    private List<Day> generateCalendarDateList() {
+        List<Day> days = new ArrayList<>();
+        GregorianCalendar calendar = new GregorianCalendar();
+        int month = calendar.get(Calendar.YEAR);
+        while (month == calendar.get(Calendar.YEAR)) {
+            days.add(new Day(calendar.getTime()));
+            calendar.add(Calendar.DAY_OF_YEAR, 1);
+        }
+
+        return days;
     }
 }
