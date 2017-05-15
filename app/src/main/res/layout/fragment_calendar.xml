@@ -22,15 +22,20 @@
             <android.support.v7.widget.RecyclerView
                 android:id="@+id/recycler_view"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"/>
+                android:layout_height="match_parent"
+                android:background="@color/md_white_1000"/>
 
             <TextView
                 android:id="@+id/header_tv"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@color/md_grey_200"
-                android:padding="8dp"
-                android:textColor="@color/md_black_1000"/>
+                android:paddingBottom="8dp"
+                android:paddingLeft="12dp"
+                android:paddingRight="12dp"
+                android:paddingTop="8dp"
+                android:textColor="@color/textColorGrey"
+                android:background="@color/md_white_1000"
+                android:textSize="@dimen/text_size_small"/>
 
             <View
                 android:layout_width="match_parent"

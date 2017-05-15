@@ -24,6 +24,8 @@ public class Day {
 
     public String monthName;
 
+    public String dayOfTheWeek;
+
     public int year;
 
     public boolean isFirstDayInMonth;
@@ -58,9 +60,16 @@ public class Day {
             monthAbbr = new SimpleDateFormat("MMM", Locale.getDefault()).format(rawDate);
             monthName = new SimpleDateFormat("MMMM", Locale.getDefault()).format(rawDate);
         }
+        if (TextUtils.isEmpty(dayOfTheWeek)) {
+            dayOfTheWeek = new SimpleDateFormat("EEEE", Locale.getDefault()).format(rawDate);
+        }
 
         isToday = thisYear == calendar.get(Calendar.YEAR) && today == calendar.get(Calendar.DAY_OF_YEAR);
         // Mock data
         hasEvent = new Random().nextBoolean();
+    }
+
+    public String getDateSectionString() {
+        return String.format(Locale.getDefault(), "%s, %s %d", dayOfTheWeek, monthName, dayInMonth).toUpperCase();
     }
 }

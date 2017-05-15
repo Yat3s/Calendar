@@ -10,6 +10,7 @@ import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.TextView;
 
+import com.yat3s.calendar.agenda.AgendaAdapter;
 import com.yat3s.calendar.calendar.CalendarView;
 
 import java.util.ArrayList;
@@ -62,9 +63,9 @@ public class CalendarFragment extends BaseFragment {
     protected void initialize() {
         mLinearLayoutManager = new LinearLayoutManager(getContext());
         mRecyclerView.setLayoutManager(mLinearLayoutManager);
-        mRecyclerView.addItemDecoration(new DividerItemDecoration(getContext(), DividerItemDecoration.VERTICAL));
-        final MusicAdapter musicAdapter = new MusicAdapter(getContext(), generateMockData());
-        mRecyclerView.setAdapter(musicAdapter);
+        final AgendaAdapter agendaAdapter = new AgendaAdapter(getContext());
+        mRecyclerView.setAdapter(agendaAdapter);
+        agendaAdapter.addFirstDataSet(generateCalendarDateList());
 
         mRecyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
             @Override
@@ -73,7 +74,7 @@ public class CalendarFragment extends BaseFragment {
                 int lastPosition = mLinearLayoutManager.findLastCompletelyVisibleItemPosition();
                 int firstPosition = mLinearLayoutManager.findFirstVisibleItemPosition();
                 mCalendarView.updatedCurrentSelectedItem(firstPosition);
-                mHeader.setText("Section" + musicAdapter.getDataSource().get(firstPosition));
+                mHeader.setText(agendaAdapter.getDataSource().get(firstPosition).getDateSectionString());
                 mTotalDy += dy;
                 if (firstPosition != mLastFirstPosition) {
                     mItemDy = 0;
@@ -113,15 +114,6 @@ public class CalendarFragment extends BaseFragment {
         FrameLayout.LayoutParams layoutParams = (FrameLayout.LayoutParams) mHeader.getLayoutParams();
         layoutParams.setMargins(0, -dy, 0, 0);
         mHeader.setLayoutParams(layoutParams);
-    }
-
-    private List<String> generateMockData() {
-        int quantity = 100;
-        List<String> mockData = new ArrayList<>();
-        for (int idx = 0; idx < quantity; idx++) {
-            mockData.add(String.valueOf(idx));
-        }
-        return mockData;
     }
 
     private List<Day> generateCalendarDateList() {
