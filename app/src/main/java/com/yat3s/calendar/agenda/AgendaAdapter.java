@@ -1,6 +1,7 @@
 package com.yat3s.calendar.agenda;
 
 import android.content.Context;
+import android.view.View;
 
 import com.yat3s.calendar.Day;
 import com.yat3s.calendar.R;
@@ -18,8 +19,15 @@ public class AgendaAdapter extends BaseAdapter<Day> {
     }
 
     @Override
-    protected void bindDataToItemView(BaseViewHolder holder, Day data, int position) {
-        holder.setText(R.id.date_tv, data.getDateSectionString());
+    protected void bindDataToItemView(BaseViewHolder holder, Day day, int position) {
+        holder.setText(R.id.date_tv, day.getDateSectionString())
+                .setTextColorRes(R.id.date_tv, day.isToday ? R.color.colorPrimary : R.color.textColorGrey)
+                .setOnClickListener(R.id.event_layout, new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+
+                    }
+                });
     }
 
     @Override

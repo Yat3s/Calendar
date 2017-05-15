@@ -16,7 +16,9 @@ import java.util.Random;
 public class Day {
     public Date rawDate;
 
-    public int dayInMonth;
+    public int dayOfMonth;
+
+    public int dayOfYear;
 
     public int month;
 
@@ -45,9 +47,10 @@ public class Day {
         int thisYear = calendar.get(Calendar.YEAR);
         int today = calendar.get(Calendar.DAY_OF_YEAR);
         calendar.setTime(rawDate);
-        if (0 == dayInMonth) {
-            dayInMonth = calendar.get(Calendar.DAY_OF_MONTH);
-            isFirstDayInMonth = dayInMonth == 1;
+        if (0 == dayOfMonth) {
+            dayOfMonth = calendar.get(Calendar.DAY_OF_MONTH);
+            dayOfYear = calendar.get(Calendar.DAY_OF_YEAR);
+            isFirstDayInMonth = dayOfMonth == 1;
         }
         if (0 == month) {
             month = calendar.get(Calendar.MONTH);
@@ -64,12 +67,29 @@ public class Day {
             dayOfTheWeek = new SimpleDateFormat("EEEE", Locale.getDefault()).format(rawDate);
         }
 
-        isToday = thisYear == calendar.get(Calendar.YEAR) && today == calendar.get(Calendar.DAY_OF_YEAR);
+        isToday = isThisYear && today == calendar.get(Calendar.DAY_OF_YEAR);
         // Mock data
         hasEvent = new Random().nextBoolean();
     }
 
     public String getDateSectionString() {
-        return String.format(Locale.getDefault(), "%s, %s %d", dayOfTheWeek, monthName, dayInMonth).toUpperCase();
+        String dateSectionPrefix = "";
+        if (isThisYear) {
+            Calendar calendar = Calendar.getInstance();
+            int today = calendar.get(Calendar.DAY_OF_YEAR);
+            switch (today - dayOfYear) {
+                case -1:
+                    dateSectionPrefix = "Tomorrow · ";
+                    break;
+                case 0:
+                    dateSectionPrefix = "Today · ";
+                    break;
+                case 1:
+                    dateSectionPrefix = "Yesterday · ";
+                    break;
+            }
+        }
+        return String.format(Locale.getDefault(), "%s%s, %s %d",
+                dateSectionPrefix, dayOfTheWeek, monthName, dayOfMonth).toUpperCase();
     }
 }

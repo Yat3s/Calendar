@@ -5,6 +5,7 @@ import android.graphics.Typeface;
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.SimpleItemAnimator;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.util.TypedValue;
@@ -82,10 +83,10 @@ public class CalendarView extends FrameLayout {
     public CalendarView(Context context, AttributeSet attrs, int defStyle) {
         super(context, attrs, defStyle);
 
-        init();
+        initialization();
     }
 
-    private void init() {
+    private void initialization() {
         // Inflate calendar layout and let it attach to FrameLayout.
         LayoutInflater.from(getContext()).inflate(R.layout.layout_calendar, this, true);
         ButterKnife.bind(this);
@@ -107,6 +108,8 @@ public class CalendarView extends FrameLayout {
         mCalendarRv.setLayoutManager(mGridLayoutManager);
         mCalendarRv.addItemDecoration(divider);
         mCalendarRv.setAdapter(mCalendarAdapter);
+        ((SimpleItemAnimator)mCalendarRv.getItemAnimator()).setSupportsChangeAnimations(false);
+
         mCalendarRv.addOnScrollListener(new RecyclerView.OnScrollListener() {
             @Override
             public void onScrolled(RecyclerView recyclerView, int dx, int dy) {

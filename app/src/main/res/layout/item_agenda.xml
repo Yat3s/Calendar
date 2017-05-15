@@ -18,8 +18,8 @@
         android:paddingRight="12dp"
         android:paddingTop="8dp"
         android:textColor="@color/textColorGrey"
-        android:textStyle="bold"
-        android:textSize="@dimen/text_size_small"/>
+        android:textSize="@dimen/text_size_small"
+        android:textStyle="bold"/>
 
     <View
         android:layout_width="match_parent"
@@ -27,8 +27,10 @@
         android:background="@color/dividerLineGrey"/>
 
     <LinearLayout
+        android:id="@+id/event_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="@drawable/selector_common"
         android:padding="12dp">
 
         <TextView

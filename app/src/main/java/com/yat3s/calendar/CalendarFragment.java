@@ -2,15 +2,9 @@ package com.yat3s.calendar;
 
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
-import android.support.v7.widget.DividerItemDecoration;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.View;
-import android.widget.FrameLayout;
-import android.widget.TextView;
 
-import com.yat3s.calendar.agenda.AgendaAdapter;
+import com.yat3s.calendar.agenda.AgendaView;
 import com.yat3s.calendar.calendar.CalendarView;
 
 import java.util.ArrayList;
@@ -31,19 +25,12 @@ public class CalendarFragment extends BaseFragment {
     @BindView(R.id.calendar_view)
     CalendarView mCalendarView;
 
-    @BindView(R.id.recycler_view)
-    RecyclerView mRecyclerView;
-
-    @BindView(R.id.header_tv)
-    TextView mHeader;
+    @BindView(R.id.agenda_view)
+    AgendaView mAgendaView;
 
     @BindView(R.id.fab)
     FloatingActionButton mFab;
 
-    private LinearLayoutManager mLinearLayoutManager;
-    private int mTotalDy = 0;
-    private int mItemDy = 0;
-    private int mLastFirstPosition;
 
     public static CalendarFragment newInstance() {
 
@@ -60,43 +47,23 @@ public class CalendarFragment extends BaseFragment {
     }
 
     @Override
-    protected void initialize() {
-        mLinearLayoutManager = new LinearLayoutManager(getContext());
-        mRecyclerView.setLayoutManager(mLinearLayoutManager);
-        final AgendaAdapter agendaAdapter = new AgendaAdapter(getContext());
-        mRecyclerView.setAdapter(agendaAdapter);
-        agendaAdapter.addFirstDataSet(generateCalendarDateList());
+    protected void initialization() {
+        List<Day> days = generateCalendarDateList();
+        mAgendaView.setAgendaDataSource(days);
+        mCalendarView.setCalendarDataSource(days);
+        mCalendarView.updatedCurrentSelectedItem(0);
 
-        mRecyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
+        mAgendaView.setOnAgendaScrollListener(new AgendaView.OnAgendaScrollListener() {
             @Override
-            public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
-                super.onScrolled(recyclerView, dx, dy);
-                int lastPosition = mLinearLayoutManager.findLastCompletelyVisibleItemPosition();
-                int firstPosition = mLinearLayoutManager.findFirstVisibleItemPosition();
-                mCalendarView.updatedCurrentSelectedItem(firstPosition);
-                mHeader.setText(agendaAdapter.getDataSource().get(firstPosition).getDateSectionString());
-                mTotalDy += dy;
-                if (firstPosition != mLastFirstPosition) {
-                    mItemDy = 0;
-                    mLastFirstPosition = firstPosition;
-                } else {
-                    mItemDy += dy;
-                }
-                moveHeader(mItemDy);
-                Log.d(TAG, "mTotalDy: " + mTotalDy);
-                Log.d(TAG, "dy: " + dy);
-                Log.d(TAG, "lastPosition: " + lastPosition);
+            public void onFirstVisibleItemPositionChange(int position) {
+                mCalendarView.updatedCurrentSelectedItem(position);
             }
 
             @Override
-            public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
-                super.onScrollStateChanged(recyclerView, newState);
+            public void onScrollStateChanged(int newState) {
                 mCalendarView.fold();
             }
         });
-
-        mCalendarView.setCalendarDataSource(generateCalendarDateList());
-        mCalendarView.updatedCurrentSelectedItem(0);
 
         mFab.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -104,16 +71,6 @@ public class CalendarFragment extends BaseFragment {
                 mCalendarView.expand();
             }
         });
-    }
-
-
-    private void moveHeader(int dy) {
-        if (dy < 0) {
-            return;
-        }
-        FrameLayout.LayoutParams layoutParams = (FrameLayout.LayoutParams) mHeader.getLayoutParams();
-        layoutParams.setMargins(0, -dy, 0, 0);
-        mHeader.setLayoutParams(layoutParams);
     }
 
     private List<Day> generateCalendarDateList() {

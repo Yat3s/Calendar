@@ -10,6 +10,8 @@ import com.yat3s.calendar.R;
 import com.yat3s.calendar.common.widget.BaseAdapter;
 import com.yat3s.calendar.common.widget.BaseViewHolder;
 
+import static android.R.string.no;
+
 /**
  * Created by Yat3s on 14/05/2017.
  * Email: hawkoyates@gmail.com
@@ -31,8 +33,8 @@ public class CalendarAdapter extends BaseAdapter<Day> {
     protected void bindDataToItemView(final BaseViewHolder holder, final Day day, final int position) {
 
         // Configure calendar data.
-        holder.setText(R.id.highlight_day_tv, String.valueOf(day.dayInMonth))
-                .setText(R.id.day_tv, String.valueOf(day.dayInMonth))
+        holder.setText(R.id.highlight_day_tv, String.valueOf(day.dayOfMonth))
+                .setText(R.id.day_tv, String.valueOf(day.dayOfMonth))
                 .setText(R.id.month_tv, day.monthAbbr)
                 .setText(R.id.year_tv, String.valueOf(day.year))
                 .setVisible(R.id.month_tv, day.isFirstDayInMonth)
@@ -72,10 +74,10 @@ public class CalendarAdapter extends BaseAdapter<Day> {
     public void updateCurrentSelectedItem(int selectedPosition) {
         if (mLastSelectedPosition != selectedPosition) {
             getDataSource().get(selectedPosition).isSelected = true;
-            notifyItemChanged(selectedPosition);
+//            notifyItemChanged(selectedPosition);
             if(mLastSelectedPosition != -1) {
                 getDataSource().get(mLastSelectedPosition).isSelected = false;
-                notifyItemChanged(mLastSelectedPosition);
+//                notifyItemChanged(mLastSelectedPosition);
             }
             mLastSelectedPosition = selectedPosition;
         }
