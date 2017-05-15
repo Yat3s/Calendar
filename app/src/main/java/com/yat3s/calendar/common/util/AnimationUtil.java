@@ -1,10 +1,13 @@
-package com.yat3s.calendar.widget;
+package com.yat3s.calendar.common.util;
 
 import android.animation.Animator;
 import android.animation.AnimatorSet;
 import android.animation.ObjectAnimator;
 import android.view.View;
 import android.view.animation.Interpolator;
+
+import com.yat3s.calendar.common.widget.BaseAdapter;
+
 
 /**
  * Created by Yat3s on 6/16/16.
@@ -13,7 +16,7 @@ import android.view.animation.Interpolator;
  */
 
 public class AnimationUtil {
-    private AnimationType mAnimationType = AnimationType.ALPHA;
+    private BaseAdapter.AnimationType mAnimationType = BaseAdapter.AnimationType.ALPHA;
     private Animator mCustomAnimator;
     private View mTargetView;
     private Interpolator mInterpolator;
@@ -22,7 +25,7 @@ public class AnimationUtil {
     public AnimationUtil() {
     }
 
-    public AnimationUtil setAnimationType(AnimationType animationType) {
+    public AnimationUtil setAnimationType(BaseAdapter.AnimationType animationType) {
         mAnimationType = animationType;
         return this;
     }
@@ -57,7 +60,7 @@ public class AnimationUtil {
         }
     }
 
-    private void startAnimation(AnimationType animationType) {
+    private void startAnimation(BaseAdapter.AnimationType animationType) {
         AnimatorSet animatorSet = new AnimatorSet();
         switch (animationType) {
             case ALPHA:

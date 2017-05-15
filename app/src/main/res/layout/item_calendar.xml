@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.yat3s.calendar.widget.SquaredFrameLayout
+<com.yat3s.calendar.common.widget.SquaredFrameLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/root_layout"
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
-    <com.yat3s.calendar.widget.SquaredTextView
+    <com.yat3s.calendar.common.widget.SquaredTextView
         android:id="@+id/highlight_day_tv"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -13,10 +13,8 @@
         android:layout_margin="8dp"
         android:background="@drawable/shape_circle_primary_color"
         android:gravity="center"
-        android:text="1"
         android:textColor="@color/md_white_1000"
         android:textStyle="bold"/>
-
 
     <LinearLayout
         android:id="@+id/date_layout"
@@ -30,20 +28,20 @@
             android:id="@+id/month_tv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="sep"
+            android:textColor="@color/textColorGrey"
             android:textSize="@dimen/text_size_small"/>
 
         <TextView
             android:id="@+id/day_tv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="1"/>
+            android:textColor="@color/textColorGrey"/>
 
         <TextView
             android:id="@+id/year_tv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="2018"
+            android:textColor="@color/textColorGrey"
             android:textSize="@dimen/text_size_small"/>
     </LinearLayout>
 
@@ -55,4 +53,4 @@
         android:layout_marginBottom="4dp"
         android:background="@drawable/shape_circle_grey"/>
 
-</com.yat3s.calendar.widget.SquaredFrameLayout>
+</com.yat3s.calendar.common.widget.SquaredFrameLayout>

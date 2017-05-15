@@ -1,4 +1,4 @@
-package com.yat3s.calendar.widget;
+package com.yat3s.calendar.common.widget;
 
 import android.content.Context;
 import android.content.Intent;

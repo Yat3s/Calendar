@@ -10,13 +10,14 @@ import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.TextView;
 
+import com.yat3s.calendar.calendar.CalendarView;
+
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 import java.util.List;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
 
 /**
  * Created by Yat3s on 13/05/2017.
@@ -90,16 +91,17 @@ public class CalendarFragment extends BaseFragment {
             @Override
             public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
                 super.onScrollStateChanged(recyclerView, newState);
+                mCalendarView.close();
             }
         });
 
         mCalendarView.setCalendarDataSource(generateCalendarDateList());
+        mCalendarView.close();
 
-        final AnimateViewWrapper animateViewWrapper = new AnimateViewWrapper(mCalendarView);
         mFab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                animateViewWrapper.animateHeight(100, 500);
+                mCalendarView.open();
             }
         });
     }
@@ -126,8 +128,8 @@ public class CalendarFragment extends BaseFragment {
     private List<Day> generateCalendarDateList() {
         List<Day> days = new ArrayList<>();
         GregorianCalendar calendar = new GregorianCalendar();
-        int month = calendar.get(Calendar.YEAR);
-        while (month == calendar.get(Calendar.YEAR)) {
+        int year = calendar.get(Calendar.YEAR);
+        while (year == calendar.get(Calendar.YEAR) || year == calendar.get(Calendar.YEAR) - 1) {
             days.add(new Day(calendar.getTime()));
             calendar.add(Calendar.DAY_OF_YEAR, 1);
         }

@@ -1,12 +1,14 @@
-package com.yat3s.calendar;
+package com.yat3s.calendar.calendar;
 
 import android.content.Context;
 import android.graphics.Typeface;
 import android.view.View;
 import android.widget.TextView;
 
-import com.yat3s.calendar.widget.BaseAdapter;
-import com.yat3s.calendar.widget.BaseViewHolder;
+import com.yat3s.calendar.Day;
+import com.yat3s.calendar.R;
+import com.yat3s.calendar.common.widget.BaseAdapter;
+import com.yat3s.calendar.common.widget.BaseViewHolder;
 
 /**
  * Created by Yat3s on 14/05/2017.
@@ -34,7 +36,7 @@ public class CalendarAdapter extends BaseAdapter<Day> {
                 .setText(R.id.month_tv, day.monthAbbr)
                 .setText(R.id.year_tv, String.valueOf(day.year))
                 .setVisible(R.id.month_tv, day.isFirstDayInMonth)
-                .setVisible(R.id.year_tv, !day.isThisYear)
+                .setVisible(R.id.year_tv, !day.isThisYear && day.isFirstDayInMonth)
                 .setBackgroundResource(R.id.root_layout,
                         (day.month & 1) > 0 ? R.drawable.selector_common : R.drawable.selector_common_grey);
 

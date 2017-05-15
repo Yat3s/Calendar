@@ -1,4 +1,4 @@
-package com.yat3s.calendar.widget;
+package com.yat3s.calendar.common.widget;
 
 import android.animation.Animator;
 import android.content.Context;
@@ -12,6 +12,8 @@ import android.view.ViewGroup;
 import android.view.animation.Interpolator;
 import android.view.animation.TranslateAnimation;
 import android.widget.RelativeLayout;
+
+import com.yat3s.calendar.common.util.AnimationUtil;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -30,6 +32,10 @@ public abstract class BaseAdapter<T> extends RecyclerView.Adapter<BaseViewHolder
     private static class VIEW_TYPE {
         static final int HEADER = 0x0010;
         static final int EMPTY_VIEW = 0x0011;
+    }
+
+    public enum AnimationType {
+        ALPHA, SCALE, SLIDE_FROM_BOTTOM, SLIDE_FROM_LEFT, SLIDE_FROM_RIGHT
     }
 
     /**

@@ -1,4 +1,4 @@
-package com.yat3s.calendar;
+package com.yat3s.calendar.common.widget;
 
 import android.animation.Animator;
 import android.animation.ObjectAnimator;

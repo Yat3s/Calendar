@@ -3,4 +3,5 @@
     <dimen name="activity_horizontal_margin">16dp</dimen>
     <dimen name="activity_vertical_margin">16dp</dimen>
     <dimen name="text_size_small">12sp</dimen>
+    <dimen name="calendar_divider_size">0.5dp</dimen>
 </resources>

@@ -2,8 +2,8 @@ package com.yat3s.calendar;
 
 import android.content.Context;
 
-import com.yat3s.calendar.widget.BaseAdapter;
-import com.yat3s.calendar.widget.BaseViewHolder;
+import com.yat3s.calendar.common.widget.BaseAdapter;
+import com.yat3s.calendar.common.widget.BaseViewHolder;
 
 import java.util.List;
 
