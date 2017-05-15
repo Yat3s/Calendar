@@ -3,7 +3,6 @@ package com.yat3s.calendar;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.widget.DividerItemDecoration;
-import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -11,14 +10,13 @@ import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.TextView;
 
-import com.yat3s.calendar.widget.BaseAdapter;
-
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 import java.util.List;
 
 import butterknife.BindView;
+import butterknife.ButterKnife;
 
 /**
  * Created by Yat3s on 13/05/2017.
@@ -26,11 +24,10 @@ import butterknife.BindView;
  * GitHub: https://github.com/yat3s
  */
 public class CalendarFragment extends BaseFragment {
-    private static final int CALENDAR_SPAN = 7;
     private static final String TAG = "CalendarFragment";
 
     @BindView(R.id.calendar_view)
-    RecyclerView mCalendarView;
+    CalendarView mCalendarView;
 
     @BindView(R.id.recycler_view)
     RecyclerView mRecyclerView;
@@ -96,18 +93,7 @@ public class CalendarFragment extends BaseFragment {
             }
         });
 
-        final CalendarAdapter calendarAdapter = new CalendarAdapter(getContext(), generateCalendarDateList());
-        DividerItemDecoration divider = new DividerItemDecoration(getContext(), DividerItemDecoration.VERTICAL);
-        divider.setDrawable(getResources().getDrawable(R.drawable.shape_divider));
-        mCalendarView.setLayoutManager(new GridLayoutManager(getContext(), CALENDAR_SPAN));
-        mCalendarView.addItemDecoration(divider);
-        mCalendarView.setAdapter(calendarAdapter);
-
-        calendarAdapter.setOnItemClickListener(new BaseAdapter.OnItemClickListener<Day>() {
-            @Override
-            public void onClick(View view, Day day, int position) {
-            }
-        });
+        mCalendarView.setCalendarDataSource(generateCalendarDateList());
 
         final AnimateViewWrapper animateViewWrapper = new AnimateViewWrapper(mCalendarView);
         mFab.setOnClickListener(new View.OnClickListener() {

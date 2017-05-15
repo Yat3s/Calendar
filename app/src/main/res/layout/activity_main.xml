@@ -7,11 +7,15 @@
     android:orientation="vertical"
     tools:context="com.yat3s.calendar.MainActivity">
 
+    <android.support.v7.widget.Toolbar
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="@color/colorPrimary"/>
+
     <FrameLayout
         android:id="@+id/calendar_layout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"/>
-
 
 
 </LinearLayout>

@@ -8,8 +8,6 @@ import android.widget.TextView;
 import com.yat3s.calendar.widget.BaseAdapter;
 import com.yat3s.calendar.widget.BaseViewHolder;
 
-import java.util.List;
-
 /**
  * Created by Yat3s on 14/05/2017.
  * Email: hawkoyates@gmail.com
@@ -18,8 +16,8 @@ import java.util.List;
 public class CalendarAdapter extends BaseAdapter<Day> {
     private int mLastSelectedPosition;
 
-    public CalendarAdapter(Context context, List<Day> data) {
-        super(context, data);
+    public CalendarAdapter(Context context) {
+        super(context);
     }
 
     @Override
