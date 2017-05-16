@@ -135,4 +135,13 @@ public class CalendarFragment extends BaseFragment {
 
         return days;
     }
+
+    @Override
+    public void onHiddenChanged(boolean hidden) {
+        super.onHiddenChanged(hidden);
+        if (!hidden && null != getActivity()) {
+            // TODO: 16/05/2017 Set current month;
+            getActivity().setTitle("Calendar");
+        }
+    }
 }

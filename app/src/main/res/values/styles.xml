@@ -6,6 +6,25 @@
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
+        <item name="android:windowTranslucentStatus">true</item>
     </style>
 
+    <style name="NavigationTabStyle">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:textSize">@dimen/text_size_large_x</item>
+        <item name="android:textColor">@color/textColorGrey</item>
+        <item name="android:background">?attr/selectableItemBackground</item>
+        <item name="android:gravity">center</item>
+    </style>
+
+    <style name="MenuStyle" parent="Widget.AppCompat.Toolbar.Button.Navigation">
+        <item name="android:layout_width">@dimen/menu_width</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:textSize">@dimen/text_size_large_x</item>
+        <item name="android:textColor">@color/md_white_1000</item>
+        <item name="android:layout_gravity">right</item>
+        <item name="android:gravity">center</item>
+    </style>
 </resources>

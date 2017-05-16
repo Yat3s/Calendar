@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">Calendar</string>
+    <string name="open_drawer_desc">Open Drawer And Show User Profile</string>
+    <string name="close_drawer_desc">Close Drawer</string>
+    <string name="tab_name_inbox">Inbox</string>
+    <string name="tab_name_file">Files</string>
+    <string name="tab_name_contact">People</string>
 </resources>

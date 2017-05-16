@@ -1,21 +1,102 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
+<android.support.v4.widget.DrawerLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/drawer_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    tools:context="com.yat3s.calendar.MainActivity">
+    android:fitsSystemWindows="true"
+    tools:context=".MainActivity"
+    tools:openDrawer="start">
 
-    <android.support.v7.widget.Toolbar
+    <LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
-        android:layout_height="?attr/actionBarSize"
-        android:background="@color/colorPrimary"/>
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
-    <FrameLayout
-        android:id="@+id/calendar_layout"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
+        <android.support.design.widget.AppBarLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:elevation="0dp">
 
+            <android.support.v7.widget.Toolbar
+                android:id="@+id/toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="?attr/colorPrimary"
+                android:minHeight="?attr/actionBarSize"
+                android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+                app:popupTheme="@style/ThemeOverlay.AppCompat.Light">
 
-</LinearLayout>
+                <com.joanzapata.iconify.widget.IconTextView
+                    android:id="@+id/menu_option_setting"
+                    style="@style/MenuStyle"
+                    android:text="{md-settings}"/>
+
+                <com.joanzapata.iconify.widget.IconTextView
+                    android:id="@+id/menu_option_optional"
+                    style="@style/MenuStyle"
+                    android:text="{md-event-note}"/>
+            </android.support.v7.widget.Toolbar>
+        </android.support.design.widget.AppBarLayout>
+
+        <android.support.design.widget.CoordinatorLayout
+            android:id="@+id/coordinatorLayout"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1">
+
+            <FrameLayout
+                android:id="@+id/content_layout"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"/>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="4dp"
+                android:layout_gravity="bottom"
+                android:background="@drawable/shadow_navigation_tab"/>
+
+        </android.support.design.widget.CoordinatorLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/navigationHeight"
+            android:background="@color/md_white_1000"
+            android:orientation="horizontal">
+
+            <com.joanzapata.iconify.widget.IconTextView
+                android:id="@+id/inbox_tab"
+                style="@style/NavigationTabStyle"
+                android:text="{md-email}"/>
+
+            <com.joanzapata.iconify.widget.IconTextView
+                android:id="@+id/calendar_tab"
+                style="@style/NavigationTabStyle"
+                android:text="{md-insert-invitation}"/>
+
+            <com.joanzapata.iconify.widget.IconTextView
+                android:id="@+id/file_tab"
+                style="@style/NavigationTabStyle"
+                android:text="{md-insert-drive-file}"/>
+
+            <com.joanzapata.iconify.widget.IconTextView
+                android:id="@+id/contact_tab"
+                style="@style/NavigationTabStyle"
+                android:text="{md-person}"/>
+        </LinearLayout>
+    </LinearLayout>
+
+    <!-- Navigation Drawer -->
+    <android.support.design.widget.NavigationView
+        android:id="@+id/nav_view"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_gravity="start"
+        android:fitsSystemWindows="true"/>
+
+</android.support.v4.widget.DrawerLayout>
