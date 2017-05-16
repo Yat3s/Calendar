@@ -5,8 +5,8 @@ import android.text.TextUtils;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
 import java.util.Locale;
-import java.util.Random;
 
 /**
  * Created by Yat3s on 14/05/2017.
@@ -14,31 +14,46 @@ import java.util.Random;
  * GitHub: https://github.com/yat3s
  */
 public class Day {
+    // The source date.
     public Date rawDate;
 
+    // The day of month.
     public int dayOfMonth;
 
+    // The day of year.
     public int dayOfYear;
 
+    // The month of year.
     public int month;
 
+    // The month abbreviation, eg. Jun/Dec
     public String monthAbbr;
 
+    // The month full name, eg. July/December
     public String monthName;
 
+    // The day of the week, eg. Sunday/Monday
     public String dayOfTheWeek;
 
+    // The year.
     public int year;
 
+    // If true, is the first day in month, eg, 01/05
     public boolean isFirstDayInMonth;
 
+    // Is it this year.
     public boolean isThisYear;
 
+    // Is it today.
     public boolean isToday;
 
+    // Weather item been selected in calendar view.
     public boolean isSelected;
 
     public boolean hasEvent;
+
+    // The events of this day.
+    public List<Event> events;
 
     public Day(Date rawDate) {
         this.rawDate = rawDate;
@@ -68,10 +83,15 @@ public class Day {
         }
 
         isToday = isThisYear && today == calendar.get(Calendar.DAY_OF_YEAR);
-        // Mock data
-        hasEvent = new Random().nextBoolean();
+
+        hasEvent = events != null && events.size() > 0;
     }
 
+    /**
+     * Generate date section string, eg. Today · Sunday, Mayday 25
+     *
+     * @return
+     */
     public String getDateSectionString() {
         String dateSectionPrefix = "";
         if (isThisYear) {

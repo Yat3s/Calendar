@@ -6,10 +6,8 @@ import android.view.View;
 
 import com.yat3s.calendar.agenda.AgendaView;
 import com.yat3s.calendar.calendar.CalendarView;
+import com.yat3s.calendar.common.util.CalendarHelper;
 
-import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.GregorianCalendar;
 import java.util.List;
 
 import butterknife.BindView;
@@ -31,9 +29,7 @@ public class CalendarFragment extends BaseFragment {
     @BindView(R.id.fab)
     FloatingActionButton mFab;
 
-
     public static CalendarFragment newInstance() {
-
         Bundle args = new Bundle();
 
         CalendarFragment fragment = new CalendarFragment();
@@ -48,7 +44,7 @@ public class CalendarFragment extends BaseFragment {
 
     @Override
     protected void initialization() {
-        List<Day> days = generateCalendarDateList();
+        List<Day> days = CalendarHelper.provideCalendarData();
         mAgendaView.setAgendaDataSource(days);
         mCalendarView.setCalendarDataSource(days);
         mCalendarView.updatedCurrentSelectedItem(0);
@@ -73,17 +69,6 @@ public class CalendarFragment extends BaseFragment {
         });
     }
 
-    private List<Day> generateCalendarDateList() {
-        List<Day> days = new ArrayList<>();
-        GregorianCalendar calendar = new GregorianCalendar();
-        int year = calendar.get(Calendar.YEAR);
-        while (year == calendar.get(Calendar.YEAR) || year == calendar.get(Calendar.YEAR) - 1) {
-            days.add(new Day(calendar.getTime()));
-            calendar.add(Calendar.DAY_OF_YEAR, 1);
-        }
-
-        return days;
-    }
 
     @Override
     public void onHiddenChanged(boolean hidden) {
