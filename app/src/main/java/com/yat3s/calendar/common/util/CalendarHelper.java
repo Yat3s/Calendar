@@ -11,10 +11,13 @@ import com.yat3s.calendar.data.model.Day;
 import com.yat3s.calendar.data.model.Event;
 
 import java.io.FileOutputStream;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.List;
+import java.util.Locale;
 
 import static java.lang.Long.parseLong;
 
@@ -90,7 +93,7 @@ public class CalendarHelper {
                 .query(
                         Uri.parse("content://com.android.calendar/events"),
                         new String[]{"calendar_id", "title", "description", "allDay",
-                                "dtstart", "dtend", "eventLocation", "eventColor"}, null,
+                                "dtstart", "dtend", "eventLocation", "displayColor"}, null,
                         null, null);
         if (null == cursor) {
             return null;
@@ -105,7 +108,7 @@ public class CalendarHelper {
             long dtstart = parseLong(cursor.getString(4));
             long dtend = Long.parseLong(cursor.getString(5));
             String eventLocation = cursor.getString(6);
-            String eventColor = cursor.getString(7);
+            int eventColor = Integer.parseInt(cursor.getString(7));
             events.add(new Event(calendarId, title, description, allDay, dtend, dtstart, eventLocation, eventColor));
         }
         while (cursor.moveToNext());
@@ -121,5 +124,34 @@ public class CalendarHelper {
             e.printStackTrace();
         }
         return events;
+    }
+
+    public static boolean isSameDay(long millisecond1, long millisecond2) {
+        Calendar calendar1 = Calendar.getInstance();
+        Calendar calendar2 = Calendar.getInstance();
+        calendar1.setTimeInMillis(millisecond1);
+        calendar2.setTimeInMillis(millisecond2);
+
+        if (calendar1.get(Calendar.YEAR) == calendar2.get(Calendar.YEAR) &&
+                calendar1.get(Calendar.DAY_OF_YEAR) == calendar2.get(Calendar.DAY_OF_YEAR)) {
+            return true;
+        }
+
+        return false;
+    }
+
+    public static String getHour(long millisecond) {
+        return new SimpleDateFormat("hh:mm", Locale.getDefault()).format(new Date(millisecond));
+    }
+
+    public static String getInterval(long fromMillisecond, long toMillisecond) {
+        long intervalMills = toMillisecond - fromMillisecond;
+        if (intervalMills >= 24 * 60 * 60 * 1000) {
+            return intervalMills / (24 * 60 * 60 * 1000) + " d";
+        } else if (intervalMills >= 60 * 60 * 1000) {
+            return intervalMills / (60 * 60 * 1000) + " h";
+        } else {
+            return intervalMills / (60 * 1000) + " m";
+        }
     }
 }

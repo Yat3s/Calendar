@@ -1,5 +1,7 @@
 package com.yat3s.calendar.data.model;
 
+import android.graphics.Color;
+
 /**
  * Created by Yat3s on 16/05/2017.
  * Email: hawkoyates@gmail.com
@@ -31,10 +33,10 @@ public class Event {
     public long eventEnd;
 
     // The event color.
-    public String eventColor = "";
+    private int displayColor;
 
     public Event(String calendarId, String title, String description, int allDay, long eventEnd,
-                 long eventStart, String location, String eventColor) {
+                 long eventStart, String location, int displayColor) {
         this.calendarId = calendarId;
         this.description = description;
         this.eventEnd = eventEnd;
@@ -42,8 +44,10 @@ public class Event {
         this.location = location;
         this.title = title;
         this.allDay = allDay;
-        if (null != eventColor) {
-            this.eventColor = eventColor;
-        }
+        this.displayColor = displayColor;
+    }
+
+    public int getDisplayColor() {
+        return Color.parseColor("#" + Integer.toHexString(-displayColor));
     }
 }

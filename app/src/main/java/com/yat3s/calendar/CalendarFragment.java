@@ -2,11 +2,16 @@ package com.yat3s.calendar;
 
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
+import android.util.Log;
 import android.view.View;
 
+import com.joanzapata.iconify.IconDrawable;
+import com.joanzapata.iconify.fonts.MaterialIcons;
 import com.yat3s.calendar.agenda.AgendaView;
+import com.yat3s.calendar.calendar.CalendarAdapter;
 import com.yat3s.calendar.calendar.CalendarView;
-import com.yat3s.calendar.common.util.CalendarHelper;
+import com.yat3s.calendar.common.widget.BaseAdapter;
+import com.yat3s.calendar.data.DataRepository;
 import com.yat3s.calendar.data.model.Day;
 
 import java.util.List;
@@ -45,7 +50,7 @@ public class CalendarFragment extends BaseFragment {
 
     @Override
     protected void initialization() {
-        List<Day> days = CalendarHelper.provideCalendarData();
+        List<Day> days = DataRepository.retrieveCalendarDateList(getActivity().getAssets());
         mAgendaView.setAgendaDataSource(days);
         mCalendarView.setCalendarDataSource(days);
         mCalendarView.updatedCurrentSelectedItem(0);
@@ -62,6 +67,12 @@ public class CalendarFragment extends BaseFragment {
                 mCalendarView.fold();
             }
         });
+        mCalendarView.setOnItemSelectedListener(new CalendarAdapter.OnItemSelectedListener<Day>() {
+            @Override
+            public void onSelected(Day day, int position) {
+                mAgendaView.scrollToPosition(position);
+            }
+        });
 
         mFab.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -69,6 +80,9 @@ public class CalendarFragment extends BaseFragment {
                 mCalendarView.expand();
             }
         });
+        mFab.setImageDrawable(new IconDrawable(getContext(), MaterialIcons.md_add)
+                .colorRes(R.color.md_white_1000)
+                .actionBarSize());
     }
 
 

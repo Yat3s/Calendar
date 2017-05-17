@@ -3,6 +3,7 @@ package com.yat3s.calendar.data.model;
 import android.text.TextUtils;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
@@ -50,10 +51,8 @@ public class Day {
     // Weather item been selected in calendar view.
     public boolean isSelected;
 
-    public boolean hasEvent;
-
     // The events of this day.
-    public List<Event> events;
+    private List<Event> events;
 
     public Day(Date rawDate) {
         this.rawDate = rawDate;
@@ -83,8 +82,25 @@ public class Day {
         }
 
         isToday = isThisYear && today == calendar.get(Calendar.DAY_OF_YEAR);
+    }
 
-        hasEvent = events != null && events.size() > 0;
+    public void updateEvents(List<Event> events) {
+        this.events = events;
+    }
+
+    public void addEvent(Event event) {
+        if (null == events) {
+            events = new ArrayList<>();
+        }
+        events.add(event);
+    }
+
+    public List<Event> getEvents() {
+        return events;
+    }
+
+    public boolean hasEvent() {
+        return events != null && this.events.size() > 0;
     }
 
     /**
@@ -111,5 +127,12 @@ public class Day {
         }
         return String.format(Locale.getDefault(), "%s%s, %s %d",
                 dateSectionPrefix, dayOfTheWeek, monthName, dayOfMonth).toUpperCase();
+    }
+
+    /**
+     * @return The millisecond of {@link #rawDate}
+     */
+    public long getMillisecond() {
+        return rawDate.getTime();
     }
 }

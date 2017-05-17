@@ -40,7 +40,7 @@ public class CalendarView extends FrameLayout {
     private static final int CALENDAR_EXPANSION_ROW = 5;
 
     // Calendar view row count show when fold.
-    private static final int CALENDAR_FOLD_ROW = 4;
+    private static final int CALENDAR_FOLD_ROW = 2;
 
     // Calendar view week indicator text size in sp.
     private static final int WEEK_INDICATOR_TEXT_SIZE = 12; // sp
@@ -200,8 +200,8 @@ public class CalendarView extends FrameLayout {
      *
      * @param listener
      */
-    public void setOnItemClickListener(BaseAdapter.OnItemClickListener listener) {
-        mCalendarAdapter.setOnItemClickListener(listener);
+    public void setOnItemSelectedListener(CalendarAdapter.OnItemSelectedListener<Day> listener) {
+        mCalendarAdapter.setOnItemSelectedListener(listener);
     }
 
     /**

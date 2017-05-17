@@ -19,6 +19,7 @@ import com.joanzapata.iconify.widget.IconTextView;
 import com.yat3s.calendar.common.util.ActivityUtils;
 import com.yat3s.calendar.common.util.AssetUtil;
 import com.yat3s.calendar.common.util.CalendarHelper;
+import com.yat3s.calendar.data.DataRepository;
 import com.yat3s.calendar.data.model.Event;
 import com.yat3s.calendar.other.ContactFragment;
 import com.yat3s.calendar.other.FileFragment;
@@ -124,6 +125,7 @@ public class MainActivity extends AppCompatActivity {
         // Set default page item.
         selectTabWithIndex(mCurrentShowTabIndex);
 
+//        CalendarHelper.readCalendarEvent(this);
     }
 
     /**

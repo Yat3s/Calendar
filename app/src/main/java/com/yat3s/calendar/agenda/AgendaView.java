@@ -9,15 +9,13 @@ import android.view.LayoutInflater;
 import android.widget.FrameLayout;
 import android.widget.TextView;
 
-import com.yat3s.calendar.data.model.Day;
 import com.yat3s.calendar.R;
+import com.yat3s.calendar.data.model.Day;
 
 import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-
-import static android.content.ContentValues.TAG;
 
 /**
  * Created by Yat3s on 15/05/2017.
@@ -25,6 +23,7 @@ import static android.content.ContentValues.TAG;
  * GitHub: https://github.com/yat3s
  */
 public class AgendaView extends FrameLayout {
+    private static final String TAG = "AgendaView";
     @BindView(R.id.agenda_rv)
     RecyclerView mAgendaRv;
 
@@ -75,7 +74,7 @@ public class AgendaView extends FrameLayout {
 
                 mTotalDy += dy;
                 if (firstVisibleItemPosition != mLastFirstPosition) {
-                    if (null != mOnAgendaScrollListener) {
+                    if (null != mOnAgendaScrollListener && dy != 0) {
                         mOnAgendaScrollListener.onFirstVisibleItemPositionChanged(firstVisibleItemPosition);
                     }
                     if (firstVisibleItemPosition < mAgendaAdapter.getDataSource().size()) {
@@ -88,7 +87,6 @@ public class AgendaView extends FrameLayout {
                 }
                 moveHeader(mItemDy);
                 Log.d(TAG, "mTotalDy: " + mTotalDy);
-                Log.d(TAG, "dy: " + dy);
                 Log.d(TAG, "lastPosition: " + lastVisibleItemPosition);
             }
 
@@ -109,8 +107,14 @@ public class AgendaView extends FrameLayout {
         }
     }
 
+    public void scrollToPosition(int position) {
+        // Some tricks for LayoutManager cannot scroll to target position shown in screen.
+        mLinearLayoutManager.scrollToPositionWithOffset(position, 0);
+    }
+
     /**
      * Agenda list scroll listener.
+     *
      * @param scrollListener {@link OnAgendaScrollListener}
      */
     public void setOnAgendaScrollListener(OnAgendaScrollListener scrollListener) {

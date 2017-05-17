@@ -5,10 +5,10 @@ import android.graphics.Typeface;
 import android.view.View;
 import android.widget.TextView;
 
-import com.yat3s.calendar.data.model.Day;
 import com.yat3s.calendar.R;
 import com.yat3s.calendar.common.widget.BaseAdapter;
 import com.yat3s.calendar.common.widget.BaseViewHolder;
+import com.yat3s.calendar.data.model.Day;
 
 /**
  * Created by Yat3s on 14/05/2017.
@@ -17,6 +17,7 @@ import com.yat3s.calendar.common.widget.BaseViewHolder;
  */
 public class CalendarAdapter extends BaseAdapter<Day> {
     public int mLastSelectedPosition = -1;
+    private OnItemSelectedListener<Day> mOnItemSelectedListener;
 
     public CalendarAdapter(Context context) {
         super(context);
@@ -58,6 +59,10 @@ public class CalendarAdapter extends BaseAdapter<Day> {
                 // Highlight item immediately.
                 day.isSelected = true;
                 updateItemSelectableUI(day, holder);
+
+                if (null != mOnItemSelectedListener) {
+                    mOnItemSelectedListener.onSelected(day, position);
+                }
             }
         });
     }
@@ -65,7 +70,7 @@ public class CalendarAdapter extends BaseAdapter<Day> {
 
     private void updateItemSelectableUI(Day day, BaseViewHolder holder) {
         holder.setVisible(R.id.highlight_day_tv, day.isSelected)
-                .setVisible(R.id.event_badge_view, !day.isSelected && !day.isFirstDayInMonth && day.hasEvent)
+                .setVisible(R.id.event_badge_view, !day.isSelected && !day.isFirstDayInMonth && day.hasEvent())
                 .setVisible(R.id.date_layout, !day.isSelected);
     }
 
@@ -79,5 +84,13 @@ public class CalendarAdapter extends BaseAdapter<Day> {
             }
             mLastSelectedPosition = selectedPosition;
         }
+    }
+
+    public void setOnItemSelectedListener(OnItemSelectedListener<Day> clickListener) {
+        mOnItemSelectedListener = clickListener;
+    }
+
+    public interface OnItemSelectedListener<T> {
+        void onSelected(T t, int position);
     }
 }
