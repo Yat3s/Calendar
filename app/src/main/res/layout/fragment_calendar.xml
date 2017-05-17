@@ -16,28 +16,10 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>
 
-        <FrameLayout
+        <com.yat3s.calendar.agenda.AgendaView
+            android:id="@+id/agenda_view"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-            <android.support.v7.widget.RecyclerView
-                android:id="@+id/recycler_view"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"/>
-
-            <TextView
-                android:id="@+id/header_tv"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@color/md_grey_200"
-                android:padding="8dp"
-                android:textColor="@color/md_black_1000"/>
-
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="6dp"
-                android:background="@drawable/shadow_calendar"/>
-        </FrameLayout>
+            android:layout_height="match_parent"/>
     </LinearLayout>
 
     <android.support.design.widget.FloatingActionButton
@@ -45,7 +27,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="right|bottom"
-        android:layout_margin="24dp"
+        android:layout_margin="@dimen/fab_margin"
         app:backgroundTint="@color/colorPrimary"/>
 
 </FrameLayout>

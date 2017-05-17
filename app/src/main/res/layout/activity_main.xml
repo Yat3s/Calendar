@@ -72,22 +72,22 @@
             <com.joanzapata.iconify.widget.IconTextView
                 android:id="@+id/inbox_tab"
                 style="@style/NavigationTabStyle"
-                android:text="{md-email}"/>
+                android:text="@string/icon_inbox"/>
 
             <com.joanzapata.iconify.widget.IconTextView
                 android:id="@+id/calendar_tab"
                 style="@style/NavigationTabStyle"
-                android:text="{md-insert-invitation}"/>
+                android:text="@string/icon_calendar"/>
 
             <com.joanzapata.iconify.widget.IconTextView
                 android:id="@+id/file_tab"
                 style="@style/NavigationTabStyle"
-                android:text="{md-insert-drive-file}"/>
+                android:text="@string/icon_file"/>
 
             <com.joanzapata.iconify.widget.IconTextView
                 android:id="@+id/contact_tab"
                 style="@style/NavigationTabStyle"
-                android:text="{md-person}"/>
+                android:text="@string/icon_person"/>
         </LinearLayout>
     </LinearLayout>
 

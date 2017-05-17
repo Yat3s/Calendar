@@ -20,14 +20,17 @@ public class InboxFragment extends BaseFragment {
         fragment.setArguments(args);
         return fragment;
     }
+
     @Override
     protected int getContentLayoutResId() {
         return R.layout.fragment_inbox;
     }
 
     @Override
-    protected void initialize() {
+    protected void initialization() {
+
     }
+
     @Override
     public void onHiddenChanged(boolean hidden) {
         super.onHiddenChanged(hidden);

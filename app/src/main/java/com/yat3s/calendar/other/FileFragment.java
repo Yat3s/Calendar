@@ -26,8 +26,9 @@ public class FileFragment extends BaseFragment {
     }
 
     @Override
-    protected void initialize() {
+    protected void initialization() {
     }
+
     @Override
     public void onHiddenChanged(boolean hidden) {
         super.onHiddenChanged(hidden);

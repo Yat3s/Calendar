@@ -3,10 +3,15 @@
     <dimen name="activity_horizontal_margin">16dp</dimen>
     <dimen name="activity_vertical_margin">16dp</dimen>
 
-    <dimen name="text_size_small">12sp</dimen>
     <dimen name="text_size_large_x">26sp</dimen>
+    <dimen name="text_size_small">12sp</dimen>
+    <dimen name="text_size_micro">10sp</dimen>
 
-    <dimen name="calendar_divider_size">0.5dp</dimen>
+    <dimen name="divider_size">0.5dp</dimen>
     <dimen name="navigationHeight">50dp</dimen>
     <dimen name="menu_width">56dp</dimen>
+    <dimen name="fab_margin">24dp</dimen>
+    <dimen name="agenda_event_duration_width">80dp</dimen>
+    <dimen name="agenda_event_display_circle_size">12dp</dimen>
+    <dimen name="agenda_event_duration_margin">12dp</dimen>
 </resources>

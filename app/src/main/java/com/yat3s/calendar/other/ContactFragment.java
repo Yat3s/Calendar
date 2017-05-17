@@ -28,7 +28,7 @@ public class ContactFragment extends BaseFragment {
     }
 
     @Override
-    protected void initialize() {
+    protected void initialization() {
     }
 
     @Override

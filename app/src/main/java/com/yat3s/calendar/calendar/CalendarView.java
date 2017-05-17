@@ -5,6 +5,7 @@ import android.graphics.Typeface;
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.SimpleItemAnimator;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.util.TypedValue;
@@ -15,7 +16,7 @@ import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.yat3s.calendar.Day;
+import com.yat3s.calendar.data.model.Day;
 import com.yat3s.calendar.R;
 import com.yat3s.calendar.common.util.MetricsUtil;
 import com.yat3s.calendar.common.widget.AnimateViewWrapper;
@@ -68,6 +69,9 @@ public class CalendarView extends FrameLayout {
 
     private int mCurrentScrollState = RecyclerView.SCROLL_STATE_IDLE;
 
+    // Calendar recycler view layout manager, contain item view...
+    private GridLayoutManager mGridLayoutManager;
+
     public CalendarView(Context context) {
         this(context, null);
     }
@@ -79,16 +83,16 @@ public class CalendarView extends FrameLayout {
     public CalendarView(Context context, AttributeSet attrs, int defStyle) {
         super(context, attrs, defStyle);
 
-        init();
+        initialization();
     }
 
-    private void init() {
+    private void initialization() {
         // Inflate calendar layout and let it attach to FrameLayout.
         LayoutInflater.from(getContext()).inflate(R.layout.layout_calendar, this, true);
         ButterKnife.bind(this);
 
         // Initial calendar view height.
-        final int dividerHeight = (int) getResources().getDimension(R.dimen.calendar_divider_size);
+        final int dividerHeight = (int) getResources().getDimension(R.dimen.divider_size);
         final int calenderItemSize = MetricsUtil.getScreenWidth(getContext()) / CALENDAR_WEEK_SPAN + dividerHeight;
         mExpandCalenderRecyclerViewHeight = calenderItemSize * CALENDAR_EXPANSION_ROW;
         mNarrowCalenderRecyclerViewHeight = calenderItemSize * CALENDAR_FOLD_ROW;
@@ -100,23 +104,21 @@ public class CalendarView extends FrameLayout {
         mCalendarAdapter = new CalendarAdapter(getContext());
         DividerItemDecoration divider = new DividerItemDecoration(getContext(), DividerItemDecoration.VERTICAL);
         divider.setDrawable(getResources().getDrawable(R.drawable.shape_divider));
-        mCalendarRv.setLayoutManager(new GridLayoutManager(getContext(), CALENDAR_WEEK_SPAN));
+        mGridLayoutManager = new GridLayoutManager(getContext(), CALENDAR_WEEK_SPAN);
+        mCalendarRv.setLayoutManager(mGridLayoutManager);
         mCalendarRv.addItemDecoration(divider);
         mCalendarRv.setAdapter(mCalendarAdapter);
+        ((SimpleItemAnimator) mCalendarRv.getItemAnimator()).setSupportsChangeAnimations(false);
+
         mCalendarRv.addOnScrollListener(new RecyclerView.OnScrollListener() {
             @Override
             public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
                 super.onScrolled(recyclerView, dx, dy);
                 mTotalDy += dy;
                 mDy = dy;
-                Log.d(TAG, "mTotalDy: " + mTotalDy);
-                Log.d(TAG, "mDy: " + mDy);
-                if (recyclerView.getLayoutManager() instanceof GridLayoutManager) {
-                    GridLayoutManager layoutManager = ((GridLayoutManager) recyclerView.getLayoutManager());
-                    mLastVisibleItemPosition = layoutManager.findLastVisibleItemPosition();
-                    mFirstVisibleItemPosition = layoutManager.findFirstVisibleItemPosition();
-                    Log.d(TAG, "mLastVisibleItemPosition: " + mLastVisibleItemPosition);
-                }
+
+                mLastVisibleItemPosition = mGridLayoutManager.findLastVisibleItemPosition();
+                mFirstVisibleItemPosition = mGridLayoutManager.findFirstVisibleItemPosition();
                 if (mCurrentScrollState == RecyclerView.SCROLL_STATE_DRAGGING) {
                     expand();
                 }
@@ -184,13 +186,13 @@ public class CalendarView extends FrameLayout {
         if (mCalendarAdapter.mLastSelectedPosition == position) {
             return;
         }
-        mCalendarAdapter.updateCurrentSelectedItem(position);
         if (position > mLastVisibleItemPosition) {
-            mCalendarRv.scrollToPosition(position);
+            mGridLayoutManager.scrollToPosition(position);
         }
         if (position < mFirstVisibleItemPosition) {
-            mCalendarRv.scrollToPosition(position);
+            mGridLayoutManager.scrollToPosition(position);
         }
+        mCalendarAdapter.updateCurrentSelectedItem(position);
     }
 
     /**
@@ -198,8 +200,8 @@ public class CalendarView extends FrameLayout {
      *
      * @param listener
      */
-    public void setOnItemClickListener(BaseAdapter.OnItemClickListener listener) {
-        mCalendarAdapter.setOnItemClickListener(listener);
+    public void setOnItemSelectedListener(CalendarAdapter.OnItemSelectedListener<Day> listener) {
+        mCalendarAdapter.setOnItemSelectedListener(listener);
     }
 
     /**
@@ -218,7 +220,6 @@ public class CalendarView extends FrameLayout {
      */
     public void fold() {
         if (isExpand) {
-            Log.d(TAG, "fold: ");
             final AnimateViewWrapper animateViewWrapper = new AnimateViewWrapper(mCalendarRv);
             animateViewWrapper.animateHeight(mNarrowCalenderRecyclerViewHeight);
             isExpand = false;
