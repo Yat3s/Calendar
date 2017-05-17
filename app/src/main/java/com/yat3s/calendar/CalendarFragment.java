@@ -49,9 +49,10 @@ public class CalendarFragment extends BaseFragment {
         mCalendarView.setCalendarDataSource(days);
         mCalendarView.updatedCurrentSelectedItem(0);
 
+        // Be related scroll event with AgendaView and CalendarView.
         mAgendaView.setOnAgendaScrollListener(new AgendaView.OnAgendaScrollListener() {
             @Override
-            public void onFirstVisibleItemPositionChange(int position) {
+            public void onFirstVisibleItemPositionChanged(int position) {
                 mCalendarView.updatedCurrentSelectedItem(position);
             }
 

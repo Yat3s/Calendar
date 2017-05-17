@@ -40,7 +40,7 @@ public class CalendarView extends FrameLayout {
     private static final int CALENDAR_EXPANSION_ROW = 5;
 
     // Calendar view row count show when fold.
-    private static final int CALENDAR_FOLD_ROW = 2;
+    private static final int CALENDAR_FOLD_ROW = 4;
 
     // Calendar view week indicator text size in sp.
     private static final int WEEK_INDICATOR_TEXT_SIZE = 12; // sp
@@ -108,7 +108,7 @@ public class CalendarView extends FrameLayout {
         mCalendarRv.setLayoutManager(mGridLayoutManager);
         mCalendarRv.addItemDecoration(divider);
         mCalendarRv.setAdapter(mCalendarAdapter);
-        ((SimpleItemAnimator)mCalendarRv.getItemAnimator()).setSupportsChangeAnimations(false);
+        ((SimpleItemAnimator) mCalendarRv.getItemAnimator()).setSupportsChangeAnimations(false);
 
         mCalendarRv.addOnScrollListener(new RecyclerView.OnScrollListener() {
             @Override
@@ -116,9 +116,6 @@ public class CalendarView extends FrameLayout {
                 super.onScrolled(recyclerView, dx, dy);
                 mTotalDy += dy;
                 mDy = dy;
-                Log.d(TAG, "mTotalDy: " + mTotalDy);
-                Log.d(TAG, "mDy: " + mDy);
-                Log.d(TAG, "mLastVisibleItemPosition: " + mLastVisibleItemPosition);
 
                 mLastVisibleItemPosition = mGridLayoutManager.findLastVisibleItemPosition();
                 mFirstVisibleItemPosition = mGridLayoutManager.findFirstVisibleItemPosition();
@@ -189,13 +186,13 @@ public class CalendarView extends FrameLayout {
         if (mCalendarAdapter.mLastSelectedPosition == position) {
             return;
         }
-        mCalendarAdapter.updateCurrentSelectedItem(position);
         if (position > mLastVisibleItemPosition) {
             mGridLayoutManager.scrollToPosition(position);
         }
         if (position < mFirstVisibleItemPosition) {
             mGridLayoutManager.scrollToPosition(position);
         }
+        mCalendarAdapter.updateCurrentSelectedItem(position);
     }
 
     /**

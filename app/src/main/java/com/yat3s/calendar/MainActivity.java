@@ -14,6 +14,7 @@ import android.widget.Toast;
 
 import com.joanzapata.iconify.widget.IconTextView;
 import com.yat3s.calendar.common.util.ActivityUtils;
+import com.yat3s.calendar.common.util.CalendarHelper;
 import com.yat3s.calendar.other.ContactFragment;
 import com.yat3s.calendar.other.FileFragment;
 import com.yat3s.calendar.other.InboxFragment;
@@ -114,6 +115,9 @@ public class MainActivity extends AppCompatActivity {
 
         // Set default page.
         selectTabWithIndex(mCurrentShowTabIndex);
+
+        CalendarHelper.getCalendars(this);
+        CalendarHelper.readCalendarEvent(this);
     }
 
     /**
@@ -215,9 +219,9 @@ public class MainActivity extends AppCompatActivity {
 
         // Set optional menu icon.
         if (index == NAVIGATION_TAB_INDEX_CALENDAR) {
-            mMenuOptionOptional.setText("{md-event-note}");
+            mMenuOptionOptional.setText(R.string.icon_event_note);
         } else {
-            mMenuOptionOptional.setText("{md-search}");
+            mMenuOptionOptional.setText(R.string.icon_search);
         }
         transaction.commitAllowingStateLoss();
         mCurrentShowTabIndex = index;

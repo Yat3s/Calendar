@@ -76,7 +76,7 @@ public class AgendaView extends FrameLayout {
                 mTotalDy += dy;
                 if (firstVisibleItemPosition != mLastFirstPosition) {
                     if (null != mOnAgendaScrollListener) {
-                        mOnAgendaScrollListener.onFirstVisibleItemPositionChange(firstVisibleItemPosition);
+                        mOnAgendaScrollListener.onFirstVisibleItemPositionChanged(firstVisibleItemPosition);
                     }
                     if (firstVisibleItemPosition < mAgendaAdapter.getDataSource().size()) {
                         setHeaderText(mAgendaAdapter.getDataSource().get(firstVisibleItemPosition));
@@ -109,6 +109,10 @@ public class AgendaView extends FrameLayout {
         }
     }
 
+    /**
+     * Agenda list scroll listener.
+     * @param scrollListener {@link OnAgendaScrollListener}
+     */
     public void setOnAgendaScrollListener(OnAgendaScrollListener scrollListener) {
         mOnAgendaScrollListener = scrollListener;
     }
@@ -127,8 +131,18 @@ public class AgendaView extends FrameLayout {
         mHeaderTv.setLayoutParams(layoutParams);
     }
 
+    /**
+     * onFirstVisibleItemPositionChanged(int):
+     * Triggering while first visible item position had changed.
+     * {@See} {@link LinearLayoutManager#findFirstVisibleItemPosition()}
+     * <p>
+     * onScrollStateChanged(int):
+     * Triggering while scroll state changed.
+     * {@See} {@link android.support.v7.widget.RecyclerView.OnScrollListener#onScrollStateChanged(int)}
+     */
     public interface OnAgendaScrollListener {
-        void onFirstVisibleItemPositionChange(int position);
+
+        void onFirstVisibleItemPositionChanged(int position);
 
         void onScrollStateChanged(int newState);
     }
