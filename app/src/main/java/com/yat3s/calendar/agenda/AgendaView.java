@@ -9,7 +9,7 @@ import android.view.LayoutInflater;
 import android.widget.FrameLayout;
 import android.widget.TextView;
 
-import com.yat3s.calendar.Day;
+import com.yat3s.calendar.data.model.Day;
 import com.yat3s.calendar.R;
 
 import java.util.List;

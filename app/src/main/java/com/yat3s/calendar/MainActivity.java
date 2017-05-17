@@ -9,15 +9,23 @@ import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 import com.joanzapata.iconify.widget.IconTextView;
 import com.yat3s.calendar.common.util.ActivityUtils;
+import com.yat3s.calendar.common.util.AssetUtil;
 import com.yat3s.calendar.common.util.CalendarHelper;
+import com.yat3s.calendar.data.model.Event;
 import com.yat3s.calendar.other.ContactFragment;
 import com.yat3s.calendar.other.FileFragment;
 import com.yat3s.calendar.other.InboxFragment;
+
+import java.lang.reflect.Type;
+import java.util.ArrayList;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -113,11 +121,9 @@ public class MainActivity extends AppCompatActivity {
             ActivityUtils.addFragmentToActivity(getSupportFragmentManager(), mContactFragment, R.id.content_layout);
         }
 
-        // Set default page.
+        // Set default page item.
         selectTabWithIndex(mCurrentShowTabIndex);
 
-        CalendarHelper.getCalendars(this);
-        CalendarHelper.readCalendarEvent(this);
     }
 
     /**

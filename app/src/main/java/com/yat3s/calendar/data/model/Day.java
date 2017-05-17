@@ -1,4 +1,4 @@
-package com.yat3s.calendar;
+package com.yat3s.calendar.data.model;
 
 import android.text.TextUtils;
 

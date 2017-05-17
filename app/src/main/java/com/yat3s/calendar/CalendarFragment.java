@@ -7,6 +7,7 @@ import android.view.View;
 import com.yat3s.calendar.agenda.AgendaView;
 import com.yat3s.calendar.calendar.CalendarView;
 import com.yat3s.calendar.common.util.CalendarHelper;
+import com.yat3s.calendar.data.model.Day;
 
 import java.util.List;
 

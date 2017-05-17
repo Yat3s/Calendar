@@ -5,7 +5,7 @@ import android.graphics.Typeface;
 import android.view.View;
 import android.widget.TextView;
 
-import com.yat3s.calendar.Day;
+import com.yat3s.calendar.data.model.Day;
 import com.yat3s.calendar.R;
 import com.yat3s.calendar.common.widget.BaseAdapter;
 import com.yat3s.calendar.common.widget.BaseViewHolder;

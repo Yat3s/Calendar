@@ -1,4 +1,4 @@
-package com.yat3s.calendar;
+package com.yat3s.calendar.data.model;
 
 /**
  * Created by Yat3s on 16/05/2017.
@@ -6,6 +6,9 @@ package com.yat3s.calendar;
  * GitHub: https://github.com/yat3s
  */
 public class Event {
+
+    // The event belong which calendar.
+    public String calendarId;
 
     //The title of the event.
     public String title;
@@ -26,4 +29,21 @@ public class Event {
 
     // The time the event ends in UTC milliseconds since the epoch
     public long eventEnd;
+
+    // The event color.
+    public String eventColor = "";
+
+    public Event(String calendarId, String title, String description, int allDay, long eventEnd,
+                 long eventStart, String location, String eventColor) {
+        this.calendarId = calendarId;
+        this.description = description;
+        this.eventEnd = eventEnd;
+        this.eventStart = eventStart;
+        this.location = location;
+        this.title = title;
+        this.allDay = allDay;
+        if (null != eventColor) {
+            this.eventColor = eventColor;
+        }
+    }
 }
