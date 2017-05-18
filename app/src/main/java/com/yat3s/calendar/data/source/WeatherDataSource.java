@@ -1,5 +1,7 @@
 package com.yat3s.calendar.data.source;
 
+import android.util.Log;
+
 import com.yat3s.calendar.R;
 
 import java.util.ArrayList;
@@ -120,7 +122,8 @@ public class WeatherDataSource {
 
             // If had pass HOURS_EVERY_DAY hours, set it as a new day.
             if (idx > 0 && idx % HOURS_EVERY_DAY == 0) {
-                mDayWeathers.add(new DayWeather(morning, afternoon, evening, hourly.data.get(idx - 1).time * 1000));
+                int dayFirstIndex = ((idx - 1) / HOURS_EVERY_DAY) * HOURS_EVERY_DAY;
+                mDayWeathers.add(new DayWeather(morning, afternoon, evening, hourly.data.get(dayFirstIndex).time * 1000));
             }
         }
     }

@@ -3,7 +3,6 @@ package com.yat3s.calendar;
 import android.location.Location;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
-import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
@@ -30,6 +29,8 @@ import rx.subscriptions.CompositeSubscription;
  */
 public class CalendarFragment extends BaseFragment {
     private static final String TAG = "CalendarFragment";
+    private static final double MOCK_LATITUDE = 39.9042;
+    private static final double MOCK_LONGITUDE = 116.4074;
 
     private CompositeSubscription mCompositeSubscription;
     @BindView(R.id.calendar_view)
@@ -97,21 +98,27 @@ public class CalendarFragment extends BaseFragment {
         mAgendaView.setAgendaDataSource(days);
         mCalendarView.setCalendarDataSource(days);
 
-        // Retrieve weather data.
-        retrieveWeatherData(LocationHelper.getLocation(getActivity()));
+        // Retrieve weather data from target location.
+        Location location = LocationHelper.getLocation(getActivity());
+        if (null == location) {
+            Toast.makeText(getContext(), "Can not get location info, Made a mock location, Please check permission!",
+                    Toast.LENGTH_SHORT).show();
+
+            // Made a mock data for test.
+            retrieveWeatherData(MOCK_LATITUDE, MOCK_LONGITUDE);
+        } else {
+            retrieveWeatherData(location.getLatitude(), location.getLongitude());
+        }
     }
 
     /**
      * Retrieve weather data from data repository.
      *
-     * @param location
+     * @param latitude
+     * @param longitude
      */
-    private void retrieveWeatherData(Location location) {
-        if (null == location) {
-            Toast.makeText(getContext(), "Can not get location info, please check permission!", Toast.LENGTH_SHORT).show();
-            return;
-        }
-        mCompositeSubscription.add(DataRepository.retrieveWeatherData(location.getLatitude(), location.getLongitude())
+    private void retrieveWeatherData(double latitude, double longitude) {
+        mCompositeSubscription.add(DataRepository.retrieveWeatherData(latitude, longitude)
                 .subscribe(new Observer<WeatherDataSource>() {
                     @Override
                     public void onCompleted() {
