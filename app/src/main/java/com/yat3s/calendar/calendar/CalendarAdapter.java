@@ -101,16 +101,24 @@ public class CalendarAdapter extends BaseAdapter<Day> {
             // Check current selected item.
             Day day = getDataSource().get(selectedPosition);
             day.isSelected = true;
-            BaseViewHolder holder = (BaseViewHolder) mRecyclerView.findViewHolderForLayoutPosition(selectedPosition);
-            updateItemSelectableUI(day, holder);
+            if (null != mRecyclerView) {
+                BaseViewHolder holder = (BaseViewHolder) mRecyclerView.findViewHolderForLayoutPosition(selectedPosition);
+                updateItemSelectableUI(day, holder);
+            } else {
+                notifyItemChanged(selectedPosition);
+            }
 
             // Uncheck last selected item.
             if (mLastSelectedPosition != -1) {
-                BaseViewHolder lastHolder = (BaseViewHolder) mRecyclerView.
-                        findViewHolderForLayoutPosition(mLastSelectedPosition);
                 Day lastDay = getDataSource().get(mLastSelectedPosition);
                 lastDay.isSelected = false;
-                updateItemSelectableUI(lastDay, lastHolder);
+                if (null != mRecyclerView) {
+                    BaseViewHolder lastHolder = (BaseViewHolder) mRecyclerView.
+                            findViewHolderForLayoutPosition(mLastSelectedPosition);
+                    updateItemSelectableUI(lastDay, lastHolder);
+                } else {
+                    notifyItemChanged(mLastSelectedPosition);
+                }
 
             }
             mLastSelectedPosition = selectedPosition;
