@@ -20,7 +20,6 @@ import com.yat3s.calendar.data.model.Day;
 import com.yat3s.calendar.R;
 import com.yat3s.calendar.common.util.MetricsUtil;
 import com.yat3s.calendar.common.widget.AnimateViewWrapper;
-import com.yat3s.calendar.common.widget.BaseAdapter;
 
 import java.util.List;
 
@@ -88,7 +87,7 @@ public class CalendarView extends FrameLayout {
 
     private void initialization() {
         // Inflate calendar layout and let it attach to FrameLayout.
-        LayoutInflater.from(getContext()).inflate(R.layout.layout_calendar, this, true);
+        LayoutInflater.from(getContext()).inflate(R.layout.view_calendar, this, true);
         ButterKnife.bind(this);
 
         // Initial calendar view height.

@@ -1,7 +1,5 @@
 package com.yat3s.calendar.network;
 
-import com.yat3s.calendar.network.component.APIConfig;
-import com.yat3s.calendar.network.component.APIService;
 import com.yat3s.calendar.network.component.ConverterFactory;
 
 import retrofit2.Retrofit;
@@ -13,10 +11,10 @@ import retrofit2.adapter.rxjava.RxJavaCallAdapterFactory;
  * GitHub: https://github.com/yat3s
  */
 public class RestClient {
-    private RestClient sInstance;
+    private static RestClient sInstance;
     private APIService mAPIService;
 
-    public RestClient getInstance() {
+    public static RestClient getInstance() {
         if (null == sInstance) {
             sInstance = new RestClient(APIConfig.BASE_URL);
         }

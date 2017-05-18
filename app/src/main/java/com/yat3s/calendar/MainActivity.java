@@ -2,6 +2,7 @@ package com.yat3s.calendar;
 
 import android.content.res.Resources;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.widget.DrawerLayout;
@@ -13,20 +14,11 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
-import com.google.gson.Gson;
-import com.google.gson.reflect.TypeToken;
 import com.joanzapata.iconify.widget.IconTextView;
 import com.yat3s.calendar.common.util.ActivityUtils;
-import com.yat3s.calendar.common.util.AssetUtil;
-import com.yat3s.calendar.common.util.CalendarHelper;
-import com.yat3s.calendar.data.DataRepository;
-import com.yat3s.calendar.data.model.Event;
 import com.yat3s.calendar.other.ContactFragment;
 import com.yat3s.calendar.other.FileFragment;
 import com.yat3s.calendar.other.InboxFragment;
-
-import java.lang.reflect.Type;
-import java.util.ArrayList;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -233,4 +225,8 @@ public class MainActivity extends AppCompatActivity {
         mCurrentShowTabIndex = index;
     }
 
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+    }
 }

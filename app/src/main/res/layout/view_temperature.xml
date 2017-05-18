@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:gravity="center_vertical"
+    android:paddingLeft="12dp"
+    android:paddingRight="12dp"
+    android:paddingTop="8dp"
+    android:paddingBottom="8dp">
+
+    <ImageView
+        android:id="@+id/cursor_iv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+
+    <TextView
+        android:id="@+id/day_quantum_tv"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_weight="1"
+        android:textSize="@dimen/text_size_small"
+        android:textColor="@color/carnation"
+        tools:text="Morning"/>
+
+    <ImageView
+        android:id="@+id/icon_iv"
+        android:layout_width="@dimen/temperature_icon_size"
+        android:layout_height="@dimen/temperature_icon_size"/>
+
+    <TextView
+        android:id="@+id/temperature_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="12dp"
+        android:layout_marginRight="12dp"
+        android:textSize="@dimen/text_size_small"
+        android:textColor="@color/md_grey_800"
+        tools:text="12"/>
+
+</LinearLayout>

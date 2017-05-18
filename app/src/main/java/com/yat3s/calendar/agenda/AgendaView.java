@@ -11,6 +11,7 @@ import android.widget.TextView;
 
 import com.yat3s.calendar.R;
 import com.yat3s.calendar.data.model.Day;
+import com.yat3s.calendar.data.source.WeatherDataSource;
 
 import java.util.List;
 
@@ -59,7 +60,7 @@ public class AgendaView extends FrameLayout {
     }
 
     private void initialization() {
-        LayoutInflater.from(getContext()).inflate(R.layout.layout_agenda, this, true);
+        LayoutInflater.from(getContext()).inflate(R.layout.view_agenda, this, true);
         ButterKnife.bind(this);
 
         mLinearLayoutManager = new LinearLayoutManager(getContext());
@@ -123,6 +124,10 @@ public class AgendaView extends FrameLayout {
                 }
             }
         }
+    }
+
+    public void updateWeatherDataSource(WeatherDataSource weatherDataSource) {
+        mAgendaAdapter.updateWeatherDataSource(weatherDataSource);
     }
 
     /**

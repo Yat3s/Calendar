@@ -6,9 +6,12 @@ import android.support.annotation.NonNull;
 import com.google.gson.Gson;
 import com.yat3s.calendar.common.util.AssetUtil;
 import com.yat3s.calendar.common.util.CalendarHelper;
+import com.yat3s.calendar.data.local.LocalWeatherData;
 import com.yat3s.calendar.data.model.Day;
 import com.yat3s.calendar.data.model.Event;
 import com.yat3s.calendar.data.source.CalendarDataSource;
+import com.yat3s.calendar.data.source.WeatherDataSource;
+import com.yat3s.calendar.network.RestClient;
 
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -16,6 +19,10 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.Date;
 import java.util.List;
+
+import rx.Observable;
+import rx.android.schedulers.AndroidSchedulers;
+import rx.schedulers.Schedulers;
 
 /**
  * Created by Yat3s on 17/05/2017.
@@ -100,5 +107,27 @@ public class DataRepository {
         }
 
         return days;
+    }
+
+    /**
+     * Retrieve weather data from remote and local,whichever is available first.
+     *
+     * @param latitude
+     * @param longitude
+     * @return {@link Observable}
+     */
+    public static Observable<WeatherDataSource> retrieveWeatherData(double latitude, double longitude) {
+        // Respond immediately with cache if available and not dirty.
+        if (LocalWeatherData.hasLocalWeatherData()) {
+            return Observable.just(LocalWeatherData.getLocalWeatherData(latitude, longitude));
+        }
+
+        // Load remote data.
+        return RestClient
+                .getInstance()
+                .getAPIService()
+                .retrieveWeatherData(latitude, longitude)
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribeOn(Schedulers.io());
     }
 }

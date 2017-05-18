@@ -1,4 +1,4 @@
-package com.yat3s.calendar.network.component;
+package com.yat3s.calendar.network;
 
 import com.yat3s.calendar.BuildConfig;
 
@@ -13,5 +13,5 @@ public class APIConfig {
     public static final String BASE_URL = "https://api.darksky.net";
 
     public static final String ENDPOINT_RETRIEVE_WEATHER
-            = "/forecast/" + BuildConfig.WEATHER_SECRET_KEY + "/{" + PATH_LATITUDE + "},{ " + PATH_LONGITUDE + "}";
+            = "/forecast/" + BuildConfig.WEATHER_SECRET_KEY + "/{" + PATH_LATITUDE + "},{" + PATH_LONGITUDE + "}";
 }

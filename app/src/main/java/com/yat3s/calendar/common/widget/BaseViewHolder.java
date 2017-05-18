@@ -1,15 +1,10 @@
 package com.yat3s.calendar.common.widget;
 
 import android.content.Context;
-import android.content.Intent;
-import android.graphics.Paint;
-import android.graphics.Typeface;
-import android.net.Uri;
-import android.os.Bundle;
 import android.support.v7.widget.RecyclerView;
 import android.util.SparseArray;
+import android.util.TypedValue;
 import android.view.View;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 /**
@@ -44,33 +39,15 @@ public class BaseViewHolder extends RecyclerView.ViewHolder {
         return this;
     }
 
-    public BaseViewHolder setImageURI(int viewId, Uri uri) {
-        ImageView view = getView(viewId);
-        view.setImageURI(uri);
-        return this;
-    }
-
-    public BaseViewHolder setTextColor(int viewId, int textColor) {
-        TextView view = getView(viewId);
-        view.setTextColor(textColor);
-        return this;
-    }
-
     public BaseViewHolder setTextColorRes(int viewId, int textColorRes) {
         TextView view = getView(viewId);
         view.setTextColor(mContext.getResources().getColor(textColorRes));
         return this;
     }
 
-    public BaseViewHolder setImageResource(int viewId, int imageResId) {
-        ImageView view = getView(viewId);
-        view.setImageResource(imageResId);
-        return this;
-    }
-
-    public BaseViewHolder setBackgroundColor(int viewId, int color) {
-        View view = getView(viewId);
-        view.setBackgroundColor(color);
+    public BaseViewHolder setTextSizeInSp(int viewId, int sp) {
+        TextView view = getView(viewId);
+        view.setTextSize(TypedValue.COMPLEX_UNIT_SP, sp);
         return this;
     }
 
@@ -86,50 +63,9 @@ public class BaseViewHolder extends RecyclerView.ViewHolder {
         return this;
     }
 
-    public BaseViewHolder setTypeface(Typeface typeface, int... viewIds) {
-        for (int viewId : viewIds) {
-            TextView view = getView(viewId);
-            view.setTypeface(typeface);
-            view.setPaintFlags(view.getPaintFlags() | Paint.SUBPIXEL_TEXT_FLAG);
-        }
-        return this;
-    }
-
     public BaseViewHolder setOnClickListener(int viewId, View.OnClickListener listener) {
         View view = getView(viewId);
         view.setOnClickListener(listener);
-        return this;
-    }
-
-    public BaseViewHolder setOnTouchListener(int viewId, View.OnTouchListener listener) {
-        View view = getView(viewId);
-        view.setOnTouchListener(listener);
-        return this;
-    }
-
-    public BaseViewHolder setOnLongClickListener(int viewId, View.OnLongClickListener listener) {
-        View view = getView(viewId);
-        view.setOnLongClickListener(listener);
-        return this;
-    }
-
-    public BaseViewHolder setTag(int viewId, Object tag) {
-        View view = getView(viewId);
-        view.setTag(tag);
-        return this;
-    }
-
-    public BaseViewHolder startActivity(Class activity, Bundle bundle) {
-        Intent intent = new Intent(mContext, activity);
-        if (null != bundle) {
-            intent.putExtras(bundle);
-        }
-        mContext.startActivity(intent);
-        return this;
-    }
-
-    public BaseViewHolder startActivity(Class activity) {
-        startActivity(activity, null);
         return this;
     }
 }
