@@ -179,6 +179,16 @@ public class CalendarView extends FrameLayout {
      */
     public void setCalendarDataSource(List<Day> dataSource) {
         mCalendarAdapter.addFirstDataSet(dataSource);
+
+        // Default show today agenda.
+        if (null != dataSource && dataSource.size() > 0) {
+            for (int idx = 0; idx < dataSource.size(); idx++) {
+                if (dataSource.get(idx).isToday) {
+                    updatedCurrentSelectedItem(idx);
+                    break;
+                }
+            }
+        }
     }
 
     public void updatedCurrentSelectedItem(int position) {
