@@ -2,15 +2,14 @@ package com.yat3s.calendar;
 
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
-import android.util.Log;
 import android.view.View;
+import android.widget.Toast;
 
 import com.joanzapata.iconify.IconDrawable;
 import com.joanzapata.iconify.fonts.MaterialIcons;
 import com.yat3s.calendar.agenda.AgendaView;
 import com.yat3s.calendar.calendar.CalendarAdapter;
 import com.yat3s.calendar.calendar.CalendarView;
-import com.yat3s.calendar.common.widget.BaseAdapter;
 import com.yat3s.calendar.data.DataRepository;
 import com.yat3s.calendar.data.model.Day;
 
@@ -53,7 +52,6 @@ public class CalendarFragment extends BaseFragment {
         List<Day> days = DataRepository.retrieveCalendarDateList(getActivity().getAssets());
         mAgendaView.setAgendaDataSource(days);
         mCalendarView.setCalendarDataSource(days);
-        mCalendarView.updatedCurrentSelectedItem(0);
 
         // Be related scroll event with AgendaView and CalendarView.
         mAgendaView.setOnAgendaScrollListener(new AgendaView.OnAgendaScrollListener() {
@@ -66,6 +64,11 @@ public class CalendarFragment extends BaseFragment {
             public void onScrollStateChanged(int newState) {
                 mCalendarView.fold();
             }
+
+            @Override
+            public void onDisplayMonthChanged(String month) {
+                getActivity().setTitle(month);
+            }
         });
         mCalendarView.setOnItemSelectedListener(new CalendarAdapter.OnItemSelectedListener<Day>() {
             @Override
@@ -77,21 +80,12 @@ public class CalendarFragment extends BaseFragment {
         mFab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                mCalendarView.expand();
+                Toast.makeText(getContext(), "Add event", Toast.LENGTH_SHORT).show();
             }
         });
         mFab.setImageDrawable(new IconDrawable(getContext(), MaterialIcons.md_add)
                 .colorRes(R.color.md_white_1000)
                 .actionBarSize());
-    }
 
-
-    @Override
-    public void onHiddenChanged(boolean hidden) {
-        super.onHiddenChanged(hidden);
-        if (!hidden && null != getActivity()) {
-            // TODO: 16/05/2017 Set current month;
-            getActivity().setTitle("Calendar");
-        }
     }
 }

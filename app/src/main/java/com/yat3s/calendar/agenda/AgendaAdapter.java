@@ -43,8 +43,10 @@ public class AgendaAdapter extends BaseAdapter<Day> {
         TextView eventTitle = holder.getView(R.id.event_title_tv);
 
         if (day.hasEvent()) {
+            // Just load first event for....mock.
             Event event = day.getEvents().get(0);
 
+            // Set duration data.
             String startAt = event.allDay == 1 ? "ALL DAY" : CalendarHelper.getHour(event.eventStart);
             String duration = event.allDay == 1 ? "1d" : CalendarHelper.getInterval(event.eventStart, event.eventEnd);
             SpannableString durationSpannableString = new SpannableString(startAt + "\n" + duration);
@@ -52,6 +54,8 @@ public class AgendaAdapter extends BaseAdapter<Day> {
                     0, startAt.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
             durationSpannableString.setSpan(new ForegroundColorSpan(Color.GRAY),
                     startAt.length(), (startAt + duration).length() + 1, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+
+            // Set event display color.
             ((CircleView) holder.getView(R.id.display_color_view)).setColor(event.getDisplayColor());
             holder.setText(R.id.event_title_tv, event.title)
                     .setText(R.id.event_duration_tv, durationSpannableString)

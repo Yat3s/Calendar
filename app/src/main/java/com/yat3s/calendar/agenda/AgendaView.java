@@ -3,8 +3,8 @@ package com.yat3s.calendar.agenda;
 import android.content.Context;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.text.TextUtils;
 import android.util.AttributeSet;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.widget.FrameLayout;
 import android.widget.TextView;
@@ -42,6 +42,8 @@ public class AgendaView extends FrameLayout {
 
     private int mLastFirstPosition;
 
+    private String mDisplayMonth;
+
     public AgendaView(Context context) {
         this(context, null);
     }
@@ -78,7 +80,12 @@ public class AgendaView extends FrameLayout {
                         mOnAgendaScrollListener.onFirstVisibleItemPositionChanged(firstVisibleItemPosition);
                     }
                     if (firstVisibleItemPosition < mAgendaAdapter.getDataSource().size()) {
-                        setHeaderText(mAgendaAdapter.getDataSource().get(firstVisibleItemPosition));
+                        Day firstVisibleDay = mAgendaAdapter.getDataSource().get(firstVisibleItemPosition);
+                        setHeaderText(firstVisibleDay);
+                        if (!TextUtils.equals(firstVisibleDay.monthName, mDisplayMonth) && null != mOnAgendaScrollListener) {
+                            mOnAgendaScrollListener.onDisplayMonthChanged(firstVisibleDay.monthName);
+                            mDisplayMonth = firstVisibleDay.monthName;
+                        }
                     }
                     mItemDy = 0;
                     mLastFirstPosition = firstVisibleItemPosition;
@@ -86,8 +93,6 @@ public class AgendaView extends FrameLayout {
                     mItemDy += dy;
                 }
                 moveHeader(mItemDy);
-                Log.d(TAG, "mTotalDy: " + mTotalDy);
-                Log.d(TAG, "lastPosition: " + lastVisibleItemPosition);
             }
 
             @Override
@@ -100,13 +105,32 @@ public class AgendaView extends FrameLayout {
         });
     }
 
+    /**
+     * Set agenda view data source
+     *
+     * @param dataSource
+     */
     public void setAgendaDataSource(List<Day> dataSource) {
         mAgendaAdapter.addFirstDataSet(dataSource);
+
+        // Default show today agenda.
         if (null != dataSource && dataSource.size() > 0) {
-            setHeaderText(dataSource.get(0));
+            for (int idx = 0; idx < dataSource.size(); idx++) {
+                if (dataSource.get(idx).isToday) {
+                    setHeaderText(dataSource.get(idx));
+                    scrollToPosition(idx);
+                    break;
+                }
+            }
         }
     }
 
+    /**
+     * Scroll to target position
+     * {@see} {@link LinearLayoutManager#scrollToPosition(int)}
+     *
+     * @param position
+     */
     public void scrollToPosition(int position) {
         // Some tricks for LayoutManager cannot scroll to target position shown in screen.
         mLinearLayoutManager.scrollToPositionWithOffset(position, 0);
@@ -143,11 +167,16 @@ public class AgendaView extends FrameLayout {
      * onScrollStateChanged(int):
      * Triggering while scroll state changed.
      * {@See} {@link android.support.v7.widget.RecyclerView.OnScrollListener#onScrollStateChanged(int)}
+     * <p>
+     * onDisplayMonthChanged(String):
+     * The title show on activity when select calendar tab
      */
     public interface OnAgendaScrollListener {
 
         void onFirstVisibleItemPositionChanged(int position);
 
         void onScrollStateChanged(int newState);
+
+        void onDisplayMonthChanged(String month);
     }
 }

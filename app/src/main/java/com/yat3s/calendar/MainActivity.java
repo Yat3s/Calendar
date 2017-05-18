@@ -124,8 +124,6 @@ public class MainActivity extends AppCompatActivity {
 
         // Set default page item.
         selectTabWithIndex(mCurrentShowTabIndex);
-
-//        CalendarHelper.readCalendarEvent(this);
     }
 
     /**
