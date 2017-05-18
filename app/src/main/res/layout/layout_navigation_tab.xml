@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/navigationHeight"
+    android:background="@color/md_white_1000"
+    android:orientation="horizontal"
+    tools:showIn="@layout/activity_main">
+
+    <com.joanzapata.iconify.widget.IconTextView
+        android:id="@+id/inbox_tab"
+        style="@style/NavigationTabStyle"
+        android:text="@string/icon_inbox"/>
+
+    <com.joanzapata.iconify.widget.IconTextView
+        android:id="@+id/calendar_tab"
+        style="@style/NavigationTabStyle"
+        android:text="@string/icon_calendar"/>
+
+    <com.joanzapata.iconify.widget.IconTextView
+        android:id="@+id/file_tab"
+        style="@style/NavigationTabStyle"
+        android:text="@string/icon_file"/>
+
+    <com.joanzapata.iconify.widget.IconTextView
+        android:id="@+id/contact_tab"
+        style="@style/NavigationTabStyle"
+        android:text="@string/icon_person"/>
+</LinearLayout>

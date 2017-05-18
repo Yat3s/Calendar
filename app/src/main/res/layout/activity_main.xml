@@ -11,9 +11,6 @@
     tools:openDrawer="start">
 
     <LinearLayout
-        xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
@@ -35,12 +32,12 @@
                 <com.joanzapata.iconify.widget.IconTextView
                     android:id="@+id/menu_option_setting"
                     style="@style/MenuStyle"
-                    android:text="{md-settings}"/>
+                    android:text="@string/icon_setting"/>
 
                 <com.joanzapata.iconify.widget.IconTextView
                     android:id="@+id/menu_option_optional"
                     style="@style/MenuStyle"
-                    android:text="{md-event-note}"/>
+                    android:text="@string/icon_event_note"/>
             </android.support.v7.widget.Toolbar>
         </android.support.design.widget.AppBarLayout>
 
@@ -63,32 +60,7 @@
 
         </android.support.design.widget.CoordinatorLayout>
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/navigationHeight"
-            android:background="@color/md_white_1000"
-            android:orientation="horizontal">
-
-            <com.joanzapata.iconify.widget.IconTextView
-                android:id="@+id/inbox_tab"
-                style="@style/NavigationTabStyle"
-                android:text="@string/icon_inbox"/>
-
-            <com.joanzapata.iconify.widget.IconTextView
-                android:id="@+id/calendar_tab"
-                style="@style/NavigationTabStyle"
-                android:text="@string/icon_calendar"/>
-
-            <com.joanzapata.iconify.widget.IconTextView
-                android:id="@+id/file_tab"
-                style="@style/NavigationTabStyle"
-                android:text="@string/icon_file"/>
-
-            <com.joanzapata.iconify.widget.IconTextView
-                android:id="@+id/contact_tab"
-                style="@style/NavigationTabStyle"
-                android:text="@string/icon_person"/>
-        </LinearLayout>
+        <include layout="@layout/layout_navigation_tab"/>
     </LinearLayout>
 
     <!-- Navigation Drawer -->

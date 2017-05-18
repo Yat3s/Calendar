@@ -2,7 +2,6 @@ package com.yat3s.calendar.data;
 
 import android.content.res.AssetManager;
 import android.support.annotation.NonNull;
-import android.util.Log;
 
 import com.google.gson.Gson;
 import com.yat3s.calendar.common.util.AssetUtil;
