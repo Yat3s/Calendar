@@ -5,7 +5,9 @@
     <string name="tab_name_inbox">Inbox</string>
     <string name="tab_name_file">Files</string>
     <string name="tab_name_contact">People</string>
+    <string name="no_event_title">No event</string>
 
+    <!--Icon font resource-->
     <string name="icon_event_note">{md-event-note}</string>
     <string name="icon_search">{md-search}</string>
     <string name="icon_setting">{md-settings}</string>
@@ -13,6 +15,6 @@
     <string name="icon_calendar">{md-insert-invitation}</string>
     <string name="icon_file">{md-insert-drive-file}</string>
     <string name="icon_person">{md-person}</string>
-    <string name="no_event_title">No event</string>
+    <string name="icon_location">{md-location-on}</string>
 
 </resources>

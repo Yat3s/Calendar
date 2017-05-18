@@ -4,6 +4,7 @@ import android.content.Context;
 import android.graphics.Color;
 import android.text.SpannableString;
 import android.text.Spanned;
+import android.text.TextUtils;
 import android.text.style.ForegroundColorSpan;
 import android.util.TypedValue;
 import android.view.View;
@@ -63,6 +64,14 @@ public class AgendaAdapter extends BaseAdapter<Day> {
                     .setVisible(R.id.display_color_view, true)
                     .setVisible(R.id.event_duration_tv, true);
             eventTitle.setTextSize(TypedValue.COMPLEX_UNIT_SP, TITLE_SIZE_HAS_EVENT);
+
+            // Set location
+            if (TextUtils.isEmpty(event.location)) {
+                holder.setVisible(R.id.event_location_tv, false);
+            } else {
+                holder.setVisible(R.id.event_location_tv, true)
+                        .setText(R.id.event_location_tv, mContext.getString(R.string.icon_location) + " " + event.location);
+            }
         } else {
             holder.setText(R.id.event_title_tv, mContext.getString(R.string.no_event_title))
                     .setTextColorRes(R.id.event_title_tv, R.color.textColorGrey)

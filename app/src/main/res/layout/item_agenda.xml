@@ -55,14 +55,32 @@
             android:layout_marginRight="12dp"
             app:backgroundColor="@color/md_yellow_300"/>
 
-        <TextView
-            android:id="@+id/event_title_tv"
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:ellipsize="end"
-            android:singleLine="true"
-            android:text="No event"
-            android:textColor="@color/textColorGrey"
-            android:textSize="@dimen/text_size_micro"/>
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/event_title_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:ellipsize="end"
+                android:singleLine="true"
+                android:text="No event"
+                android:textColor="@color/textColorGrey"
+                android:textSize="@dimen/text_size_small"/>
+
+            <com.joanzapata.iconify.widget.IconTextView
+                android:id="@+id/event_location_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:singleLine="true"
+                android:textColor="@color/textColorGrey"
+                android:textSize="@dimen/text_size_small"
+                android:layout_marginTop="8dp"
+                android:visibility="gone"
+                />
+        </LinearLayout>
+
     </LinearLayout>
 </LinearLayout>
