@@ -4,6 +4,8 @@ import android.content.res.Resources;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
@@ -74,7 +76,18 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
 
-        // Configure Toolbar and DrawLayout
+        configureToolbar();
+        configureFragments();
+
+        // Set default page item.
+        selectTabWithIndex(mCurrentShowTabIndex);
+    }
+
+    /**
+     * Configure toolbar and DrawLayout
+     * {@link DrawerLayout}
+     */
+    private void configureToolbar() {
         ActionBarDrawerToggle mDrawerToggle;
         setSupportActionBar(mToolbar);
         final ActionBar actionBar = getSupportActionBar();
@@ -94,9 +107,13 @@ public class MainActivity extends AppCompatActivity {
             mDrawerLayout.setDrawerListener(mDrawerToggle);
             mDrawerToggle.syncState();
         }
+    }
 
-
-        // Add Fragment to activity.
+    /**
+     * Configure and load all fragment to activity.
+     * {@see} {@link ActivityUtils#addFragmentToActivity(FragmentManager, Fragment, int)}
+     */
+    private void configureFragments() {
         if (null == mCalendarFragment) {
             mInboxFragment = InboxFragment.newInstance();
             ActivityUtils.addFragmentToActivity(getSupportFragmentManager(), mInboxFragment, R.id.content_layout);
@@ -114,8 +131,6 @@ public class MainActivity extends AppCompatActivity {
             ActivityUtils.addFragmentToActivity(getSupportFragmentManager(), mContactFragment, R.id.content_layout);
         }
 
-        // Set default page item.
-        selectTabWithIndex(mCurrentShowTabIndex);
     }
 
     /**

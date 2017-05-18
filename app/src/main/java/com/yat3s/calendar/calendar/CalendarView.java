@@ -38,7 +38,7 @@ public class CalendarView extends FrameLayout {
     // Calendar view row count show when expanded.
     private static final int CALENDAR_EXPANSION_ROW = 5;
 
-    // Calendar view row count show when fold.
+    // Calendar view row count show when collapse.
     private static final int CALENDAR_FOLD_ROW = 2;
 
     // Calendar view week indicator text size in sp.
@@ -126,7 +126,6 @@ public class CalendarView extends FrameLayout {
             @Override
             public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
                 super.onScrollStateChanged(recyclerView, newState);
-                Log.d(TAG, "onScrollStateChanged: " + newState);
                 mCurrentScrollState = newState;
                 switch (newState) {
                     case RecyclerView.SCROLL_STATE_IDLE:
@@ -179,6 +178,16 @@ public class CalendarView extends FrameLayout {
      */
     public void setCalendarDataSource(List<Day> dataSource) {
         mCalendarAdapter.addFirstDataSet(dataSource);
+
+        // Default show today agenda.
+        if (null != dataSource && dataSource.size() > 0) {
+            for (int idx = 0; idx < dataSource.size(); idx++) {
+                if (dataSource.get(idx).isToday) {
+                    updatedCurrentSelectedItem(idx);
+                    break;
+                }
+            }
+        }
     }
 
     public void updatedCurrentSelectedItem(int position) {
@@ -215,9 +224,9 @@ public class CalendarView extends FrameLayout {
     }
 
     /**
-     * Fold calender view height to {@link #CALENDAR_FOLD_ROW}
+     * Collapse calender view height to {@link #CALENDAR_FOLD_ROW}
      */
-    public void fold() {
+    public void collapse() {
         if (isExpand) {
             final AnimateViewWrapper animateViewWrapper = new AnimateViewWrapper(mCalendarRv);
             animateViewWrapper.animateHeight(mNarrowCalenderRecyclerViewHeight);

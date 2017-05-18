@@ -68,7 +68,7 @@ public class CalendarFragment extends BaseFragment {
 
             @Override
             public void onScrollStateChanged(int newState) {
-                mCalendarView.fold();
+                mCalendarView.collapse();
             }
 
             @Override
