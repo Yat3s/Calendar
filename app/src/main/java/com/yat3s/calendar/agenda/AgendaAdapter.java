@@ -24,7 +24,7 @@ import com.yat3s.calendar.data.model.Event;
  */
 public class AgendaAdapter extends BaseAdapter<Day> {
     private static final int TITLE_SIZE_HAS_EVENT = 14;
-    private static final int TITLE_SIZE_NO_EVENT = 10;
+    private static final int TITLE_SIZE_NO_EVENT = 12;
 
     public AgendaAdapter(Context context) {
         super(context);

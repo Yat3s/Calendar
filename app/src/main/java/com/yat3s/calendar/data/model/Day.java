@@ -125,7 +125,7 @@ public class Day {
                     break;
             }
         }
-        return String.format(Locale.getDefault(), "%s%s, %s %d",
+        return String.format(Locale.getDefault(), "%s%s, %s %02d",
                 dateSectionPrefix, dayOfTheWeek, monthName, dayOfMonth).toUpperCase();
     }
 

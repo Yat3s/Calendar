@@ -15,9 +15,10 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:paddingBottom="8dp"
-        android:paddingLeft="12dp"
-        android:paddingRight="12dp"
+        android:paddingLeft="16dp"
+        android:paddingRight="16dp"
         android:paddingTop="8dp"
+        android:singleLine="true"
         android:textColor="@color/textColorGrey"
         android:textSize="@dimen/text_size_small"
         android:textStyle="bold"/>
@@ -33,15 +34,18 @@
         android:layout_height="wrap_content"
         android:background="@drawable/selector_common"
         android:gravity="center_vertical"
-        android:padding="12dp">
+        android:paddingBottom="12dp"
+        android:paddingLeft="16dp"
+        android:paddingRight="16dp"
+        android:paddingTop="12dp">
 
         <TextView
             android:id="@+id/event_duration_tv"
             android:layout_width="@dimen/agenda_event_duration_width"
             android:layout_height="wrap_content"
-            android:textSize="@dimen/text_size_small"
             android:layout_marginBottom="@dimen/agenda_event_duration_margin"
-            android:layout_marginTop="@dimen/agenda_event_duration_margin"/>
+            android:layout_marginTop="@dimen/agenda_event_duration_margin"
+            android:textSize="@dimen/text_size_small"/>
 
         <com.yat3s.calendar.common.widget.CircleView
             android:id="@+id/display_color_view"
@@ -55,6 +59,8 @@
             android:id="@+id/event_title_tv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:ellipsize="end"
+            android:singleLine="true"
             android:text="No event"
             android:textColor="@color/textColorGrey"
             android:textSize="@dimen/text_size_micro"/>
