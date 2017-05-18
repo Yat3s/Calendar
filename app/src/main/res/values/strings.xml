@@ -13,5 +13,6 @@
     <string name="icon_calendar">{md-insert-invitation}</string>
     <string name="icon_file">{md-insert-drive-file}</string>
     <string name="icon_person">{md-person}</string>
+    <string name="no_event_title">No event</string>
 
 </resources>

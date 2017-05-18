@@ -41,6 +41,11 @@ public class CircleView extends View {
         mPaint.setColor(getResources().getColor(mColorResId));
     }
 
+    /**
+     * Updated paint color.
+     *
+     * @param color
+     */
     public void setColor(@ColorInt int color) {
         mPaint.setColor(color);
         invalidate();

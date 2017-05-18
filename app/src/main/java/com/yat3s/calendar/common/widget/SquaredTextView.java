@@ -20,12 +20,13 @@ public class SquaredTextView extends TextView {
 
     public SquaredTextView(Context context, AttributeSet attrs, int defStyle) {
         super(context, attrs, defStyle);
-
     }
 
     @Override
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
         super.onMeasure(widthMeasureSpec, heightMeasureSpec);
+
+        // Make this view as square.
         setMeasuredDimension(getMeasuredWidth(), getMeasuredWidth());
     }
 }

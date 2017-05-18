@@ -25,6 +25,8 @@ public class SquaredFrameLayout extends FrameLayout {
     @Override
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
         super.onMeasure(widthMeasureSpec, heightMeasureSpec);
+
+        // Make this view as square.
         setMeasuredDimension(getMeasuredWidth(), getMeasuredWidth());
     }
 }

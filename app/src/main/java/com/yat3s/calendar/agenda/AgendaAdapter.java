@@ -64,7 +64,7 @@ public class AgendaAdapter extends BaseAdapter<Day> {
                     .setVisible(R.id.event_duration_tv, true);
             eventTitle.setTextSize(TypedValue.COMPLEX_UNIT_SP, TITLE_SIZE_HAS_EVENT);
         } else {
-            holder.setText(R.id.event_title_tv, "No event")
+            holder.setText(R.id.event_title_tv, mContext.getString(R.string.no_event_title))
                     .setTextColorRes(R.id.event_title_tv, R.color.textColorGrey)
                     .setVisible(R.id.display_color_view, false)
                     .setVisible(R.id.event_duration_tv, false);
