@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    tools:showIn="@layout/item_agenda">
+
+    <TextView
+        android:id="@+id/event_title_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ellipsize="end"
+        android:singleLine="true"
+        android:textColor="@color/textColorGrey"
+        android:textSize="@dimen/text_size_small"/>
+
+    <com.joanzapata.iconify.widget.IconTextView
+        android:id="@+id/event_location_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:singleLine="true"
+        android:textColor="@color/textColorGrey"
+        android:textSize="@dimen/text_size_small"
+        android:visibility="gone"/>
+</LinearLayout>
+
+    

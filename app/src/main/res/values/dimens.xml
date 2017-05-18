@@ -15,4 +15,5 @@
     <dimen name="agenda_event_display_circle_size">12dp</dimen>
     <dimen name="agenda_event_duration_margin">12dp</dimen>
     <dimen name="text_size_middle">16sp</dimen>
+    <dimen name="temperature_icon_size">24dp</dimen>
 </resources>

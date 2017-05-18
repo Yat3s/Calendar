@@ -7,5 +7,7 @@ ext {
             targetSdkVersion : 25,
             versionCode      : 1,
             versionName      : "1.0",
+            retrofitVersion  : "2.2.0",
+            supportVersion   : "25.3.1"
     ]
 }

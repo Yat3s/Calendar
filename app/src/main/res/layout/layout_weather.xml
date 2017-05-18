@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/weather_container_layout"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/md_white_1000"
+    android:orientation="vertical"
+    android:visibility="gone"
+    tools:showIn="@layout/item_agenda">
+
+    <com.yat3s.calendar.common.widget.TemperatureView
+        android:id="@+id/morning_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:name="Morning"/>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/divider_size"
+        android:layout_marginLeft="12dp"
+        android:layout_marginRight="12dp"
+        android:background="@color/dividerLineGrey"/>
+
+    <com.yat3s.calendar.common.widget.TemperatureView
+        android:id="@+id/afternoon_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:name="Afternoon"/>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/divider_size"
+        android:layout_marginLeft="12dp"
+        android:layout_marginRight="12dp"
+        android:background="@color/dividerLineGrey"/>
+
+    <com.yat3s.calendar.common.widget.TemperatureView
+        android:id="@+id/evening_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:name="Evening"/>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/divider_size"
+        android:background="@color/dividerLineGrey"/>
+
+</LinearLayout>

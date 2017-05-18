@@ -11,6 +11,8 @@ android {
         versionCode cfg.versionCode
         versionName cfg.versionName
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        buildConfigField "String", "WEATHER_SECRET_KEY", "\"${DARK_SKY_SECRET_KEY}\""
+
     }
     buildTypes {
         release {
@@ -28,13 +30,19 @@ dependencies {
     androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
-
+    
     // Widget & View tools
-    compile 'com.android.support:design:25.3.1'
-    compile 'com.joanzapata.iconify:android-iconify-material:2.2.2'
-    compile 'com.jakewharton:butterknife:8.5.1'
-    annotationProcessor 'com.jakewharton:butterknife-compiler:8.5.1'
+    compile "com.android.support:design:${cfg.supportVersion}"
+    compile "com.joanzapata.iconify:android-iconify-material:2.2.2"
+    compile "com.jakewharton:butterknife:8.5.1"
+    annotationProcessor "com.jakewharton:butterknife-compiler:8.5.1"
 
     // Protocol & network
-    compile "com.squareup.retrofit2:converter-gson:2.2.0"
+    compile "com.squareup.retrofit2:converter-gson:${cfg.retrofitVersion}"
+    compile "com.squareup.retrofit2:retrofit:${cfg.retrofitVersion}"
+    compile "com.squareup.retrofit2:adapter-rxjava:${cfg.retrofitVersion}"
+    compile "io.reactivex:rxjava:1.1.6"
+    compile "io.reactivex:rxandroid:1.2.1"
+
+
 }
