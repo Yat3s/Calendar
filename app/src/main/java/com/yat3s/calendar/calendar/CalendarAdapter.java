@@ -76,10 +76,14 @@ public class CalendarAdapter extends BaseAdapter<Day> {
 
     /**
      * Updated item UI when day.selected has changed.
-     * @param day {@link Day}
+     *
+     * @param day    {@link Day}
      * @param holder {@link BaseViewHolder}
      */
     private void updateItemSelectableUI(Day day, BaseViewHolder holder) {
+        if (null == holder) {
+            return;
+        }
         holder.setVisible(R.id.highlight_day_tv, day.isSelected)
                 .setVisible(R.id.event_badge_view, !day.isSelected && !day.isFirstDayInMonth && day.hasEvent())
                 .setVisible(R.id.date_layout, !day.isSelected);
@@ -88,6 +92,7 @@ public class CalendarAdapter extends BaseAdapter<Day> {
     /**
      * Updated current selected item, it contain check current item and
      * uncheck last item.
+     *
      * @param selectedPosition
      */
     public void updateCurrentSelectedItem(int selectedPosition) {
@@ -97,9 +102,7 @@ public class CalendarAdapter extends BaseAdapter<Day> {
             Day day = getDataSource().get(selectedPosition);
             day.isSelected = true;
             BaseViewHolder holder = (BaseViewHolder) mRecyclerView.findViewHolderForLayoutPosition(selectedPosition);
-            if (null != holder) {
-                updateItemSelectableUI(day, holder);
-            }
+            updateItemSelectableUI(day, holder);
 
             // Uncheck last selected item.
             if (mLastSelectedPosition != -1) {
