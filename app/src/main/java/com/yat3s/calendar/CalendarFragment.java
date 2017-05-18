@@ -49,7 +49,7 @@ public class CalendarFragment extends BaseFragment {
     }
 
     @Override
-    protected void initialization() {
+    protected void initialize() {
         List<Day> days = DataRepository.retrieveCalendarDateList(getActivity().getAssets());
         mAgendaView.setAgendaDataSource(days);
         mCalendarView.setCalendarDataSource(days);

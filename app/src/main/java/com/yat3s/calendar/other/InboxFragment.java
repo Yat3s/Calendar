@@ -27,7 +27,7 @@ public class InboxFragment extends BaseFragment {
     }
 
     @Override
-    protected void initialization() {
+    protected void initialize() {
 
     }
 

@@ -26,7 +26,7 @@ public class FileFragment extends BaseFragment {
     }
 
     @Override
-    protected void initialization() {
+    protected void initialize() {
     }
 
     @Override

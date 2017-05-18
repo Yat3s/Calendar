@@ -17,14 +17,14 @@ import butterknife.ButterKnife;
 public abstract class BaseFragment extends Fragment {
     protected abstract int getContentLayoutResId();
 
-    protected abstract void initialization();
+    protected abstract void initialize();
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View rootView = inflater.inflate(getContentLayoutResId(), container, false);
         ButterKnife.bind(this, rootView);
-        initialization();
+        initialize();
         return rootView;
     }
 }
