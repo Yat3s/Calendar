@@ -9,6 +9,7 @@ import android.text.style.ForegroundColorSpan;
 import android.view.View;
 import android.widget.LinearLayout;
 
+import com.yat3s.calendar.App;
 import com.yat3s.calendar.R;
 import com.yat3s.calendar.common.util.CalendarHelper;
 import com.yat3s.calendar.common.widget.BaseAdapter;
@@ -38,7 +39,7 @@ public class AgendaAdapter extends BaseAdapter<Day> {
     }
 
     @Override
-    protected void bindDataToItemView(BaseViewHolder holder, Day day, int position) {
+    protected void bindDataToItemView(BaseViewHolder holder, final Day day, int position) {
         // Bind common data.
         holder.setText(R.id.date_tv, day.getDateSectionString())
                 .setTextColorRes(R.id.date_tv, day.isToday ? R.color.colorPrimary : R.color.textColorGrey)
@@ -46,7 +47,11 @@ public class AgendaAdapter extends BaseAdapter<Day> {
                 .setOnClickListener(R.id.event_layout, new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
+                        if (day.hasEvent()) {
 
+                        } else {
+                            App.startNewEventActivity(mContext);
+                        }
                     }
                 });
 

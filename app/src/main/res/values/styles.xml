@@ -9,7 +9,14 @@
         <item name="android:windowTranslucentStatus">true</item>
     </style>
 
-    <style name="NavigationTabStyle">
+    <style name="AppTheme.NewEvent" parent="Theme.AppCompat.Light.NoActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/elm</item>
+        <item name="colorPrimaryDark">@color/elm</item>
+        <item name="colorAccent">@color/colorAccent</item>
+    </style>
+
+    <style name="AppTheme.NavigationTabStyle">
         <item name="android:layout_width">0dp</item>
         <item name="android:layout_height">match_parent</item>
         <item name="android:layout_weight">1</item>
@@ -19,12 +26,29 @@
         <item name="android:gravity">center</item>
     </style>
 
-    <style name="MenuStyle" parent="Widget.AppCompat.Toolbar.Button.Navigation">
+    <style name="AppTheme.MenuStyle" parent="Widget.AppCompat.Toolbar.Button.Navigation">
         <item name="android:layout_width">@dimen/menu_width</item>
         <item name="android:layout_height">match_parent</item>
         <item name="android:textSize">@dimen/text_size_large_x</item>
         <item name="android:textColor">@color/md_white_1000</item>
         <item name="android:layout_gravity">right</item>
         <item name="android:gravity">center</item>
+    </style>
+
+    <style name="AppTheme.NewEvent.Divider">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">@dimen/divider_size</item>
+        <item name="android:layout_marginLeft">76dp</item>
+        <item name="android:layout_marginRight">@dimen/new_event_item_padding</item>
+        <item name="android:background">@color/dividerLineGrey</item>
+    </style>
+
+    <style name="AppTheme.NewEvent.Icon">
+        <item name="android:layout_width">@dimen/new_event_icon_size</item>
+        <item name="android:layout_height">@dimen/new_event_icon_size</item>
+        <item name="android:gravity">center</item>
+        <item name="android:textSize">@dimen/text_size_large_x</item>
+        <item name="android:layout_marginRight">@dimen/new_event_icon_divide_width</item>
+        <item name="android:textColor">@color/md_grey_400</item>
     </style>
 </resources>
