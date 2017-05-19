@@ -7,7 +7,6 @@ import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.SimpleItemAnimator;
 import android.util.AttributeSet;
-import android.util.Log;
 import android.util.TypedValue;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -16,10 +15,10 @@ import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.yat3s.calendar.data.model.Day;
 import com.yat3s.calendar.R;
 import com.yat3s.calendar.common.util.MetricsUtil;
 import com.yat3s.calendar.common.widget.AnimateViewWrapper;
+import com.yat3s.calendar.data.model.Day;
 
 import java.util.List;
 
@@ -91,6 +90,19 @@ public class CalendarView extends FrameLayout {
         ButterKnife.bind(this);
 
         // Initial calendar view height.
+        initialCalendarViewHeight();
+
+        // Configure calendar recycler view.
+        configureCalendarRecyclerView();
+
+        // Configure week indicator.
+        configureWeekIndicator();
+    }
+
+    /**
+     * Initialize calendar view height, make height as {@link #CALENDAR_FOLD_ROW}
+     */
+    private void initialCalendarViewHeight() {
         final int dividerHeight = (int) getResources().getDimension(R.dimen.divider_size);
         final int calenderItemSize = MetricsUtil.getScreenWidth(getContext()) / CALENDAR_WEEK_SPAN + dividerHeight;
         mExpandCalenderRecyclerViewHeight = calenderItemSize * CALENDAR_EXPANSION_ROW;
@@ -98,8 +110,13 @@ public class CalendarView extends FrameLayout {
         LinearLayout.LayoutParams layoutParams = (LinearLayout.LayoutParams) mCalendarRv.getLayoutParams();
         layoutParams.height = mNarrowCalenderRecyclerViewHeight;
         mCalendarRv.setLayoutParams(layoutParams);
+    }
 
-        // Configure calendar recycler view.
+    /**
+     * Configure recycler view and add scroll listener to
+     * process some events or operations.
+     */
+    private void configureCalendarRecyclerView() {
         mCalendarAdapter = new CalendarAdapter(getContext());
         DividerItemDecoration divider = new DividerItemDecoration(getContext(), DividerItemDecoration.VERTICAL);
         divider.setDrawable(getResources().getDrawable(R.drawable.shape_divider));
@@ -130,11 +147,7 @@ public class CalendarView extends FrameLayout {
                 switch (newState) {
                     case RecyclerView.SCROLL_STATE_IDLE:
                         // TODO: 15/05/2017 BUG IN scroll to adaptive position
-//                        int scrollToAdaptivePosition = Math.round(mTotalDy % (float) calenderItemSize) > 0 ?
-//                                mFirstVisibleItemPosition + CALENDAR_WEEK_SPAN : mFirstVisibleItemPosition;
                         int scrollToAdaptivePosition = mFirstVisibleItemPosition;
-                        Log.d(TAG, "scrollToAdaptivePosition: " + scrollToAdaptivePosition / 7);
-                        Log.d(TAG, "mFirstVisibleItemPosition: " + mFirstVisibleItemPosition / 7);
                         if (scrollToAdaptivePosition >= 0
                                 && scrollToAdaptivePosition < mCalendarAdapter.getDataSource().size()) {
                             mCalendarRv.smoothScrollToPosition(mFirstVisibleItemPosition);
@@ -144,10 +157,13 @@ public class CalendarView extends FrameLayout {
                 }
             }
         });
+    }
 
-
-        // Configure week indicator.
-        String[] weekAbbr = {"S", "M", "T", "W", "T", "F", "S"};
+    /**
+     * Configure calendar top week indicator layout.
+     */
+    private void configureWeekIndicator() {
+        final String[] weekAbbr = {"S", "M", "T", "W", "T", "F", "S"};
         mWeekIndicatorLayout.removeAllViews(); // Keep mWeekIndicatorLayout is empty.
         for (int idx = 0; idx < weekAbbr.length; idx++) {
             TextView weekIndicator = new TextView(getContext());
@@ -190,6 +206,15 @@ public class CalendarView extends FrameLayout {
         }
     }
 
+    /**
+     * Updated calendar view current select item.
+     * It will scroll down while position > mLastVisibleItemPosition
+     * and scroll up while position < mLastVisibleItemPosition
+     * <p>
+     * {@see} {@link CalendarAdapter#updateCurrentSelectedItem(int)}
+     *
+     * @param position
+     */
     public void updatedCurrentSelectedItem(int position) {
         if (mCalendarAdapter.mLastSelectedPosition == position) {
             return;

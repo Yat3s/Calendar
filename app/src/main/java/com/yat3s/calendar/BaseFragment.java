@@ -15,6 +15,9 @@ import butterknife.ButterKnife;
  * GitHub: https://github.com/yat3s
  */
 public abstract class BaseFragment extends Fragment {
+    /**
+     * Inflate layout from layout id.
+     */
     protected abstract int getContentLayoutResId();
 
     protected abstract void initialize();

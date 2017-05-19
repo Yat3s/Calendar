@@ -21,7 +21,7 @@ public class RestClient {
         return sInstance;
     }
 
-    RestClient(String baseUrl) {
+    private RestClient(String baseUrl) {
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(baseUrl)
                 .addConverterFactory(ConverterFactory.create())

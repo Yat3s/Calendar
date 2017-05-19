@@ -83,7 +83,13 @@ public class LocationHelper {
         }
     }
 
-    public static Location getLocation(Activity context) {
+    /**
+     * Get last known location from system location service.
+     * {@link LocationManager#getLastKnownLocation(String)}
+     * @param context
+     * @return
+     */
+    public static Location getLastKnownLocation(Activity context) {
         if (ActivityCompat.checkSelfPermission(context,
                 Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED
                 && ActivityCompat.checkSelfPermission(context,

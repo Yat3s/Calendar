@@ -38,7 +38,7 @@ public class CalendarAdapter extends BaseAdapter<Day> {
     @Override
     protected void bindDataToItemView(final BaseViewHolder holder, final Day day, final int position) {
 
-        // Configure calendar data.
+        // Configure calendar common data.
         holder.setText(R.id.highlight_day_tv, String.valueOf(day.dayOfMonth))
                 .setText(R.id.day_tv, String.valueOf(day.dayOfMonth))
                 .setText(R.id.month_tv, day.monthAbbr)

@@ -59,7 +59,47 @@ public class CalendarFragment extends BaseFragment {
     protected void initialize() {
         mCompositeSubscription = new CompositeSubscription();
 
-        // Be related scroll event with AgendaView and CalendarView.
+        configureFAB();
+        tieCalendarWithAgenda();
+        retrieveCalendarData();
+
+        // Retrieve weather data from target location.
+        Location location = LocationHelper.getLastKnownLocation(getActivity());
+        if (null == location) {
+            Toast.makeText(getContext(), "Can not get location info, Made a mock location, Please check permission!",
+                    Toast.LENGTH_SHORT).show();
+
+            // Made a mock data for test.
+            retrieveWeatherData(MOCK_LATITUDE, MOCK_LONGITUDE);
+        } else {
+            retrieveWeatherData(location.getLatitude(), location.getLongitude());
+        }
+    }
+
+    /**
+     * Configure floating action button for add event.
+     * {@link FloatingActionButton}
+     */
+    private void configureFAB() {
+        mFab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(getContext(), "Add event", Toast.LENGTH_SHORT).show();
+            }
+        });
+        mFab.setImageDrawable(new IconDrawable(getContext(), MaterialIcons.md_add)
+                .colorRes(R.color.md_white_1000)
+                .actionBarSize());
+
+    }
+
+    /**
+     * Tie Calendar with Agenda.
+     * You can see impl {@link AgendaView#setOnAgendaScrollListener(AgendaView.OnAgendaScrollListener)}
+     * and {@link CalendarView#setOnItemSelectedListener(CalendarAdapter.OnItemSelectedListener)}
+     * They connect through scroll listener.
+     */
+    private void tieCalendarWithAgenda() {
         mAgendaView.setOnAgendaScrollListener(new AgendaView.OnAgendaScrollListener() {
             @Override
             public void onFirstVisibleItemPositionChanged(int position) {
@@ -83,36 +123,20 @@ public class CalendarFragment extends BaseFragment {
             }
         });
 
-        mFab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Toast.makeText(getContext(), "Add event", Toast.LENGTH_SHORT).show();
-            }
-        });
-        mFab.setImageDrawable(new IconDrawable(getContext(), MaterialIcons.md_add)
-                .colorRes(R.color.md_white_1000)
-                .actionBarSize());
-
-        // Retrieve calendar data.
-        final List<Day> days = DataRepository.retrieveCalendarDateList(getActivity().getAssets());
-        mAgendaView.setAgendaDataSource(days);
-        mCalendarView.setCalendarDataSource(days);
-
-        // Retrieve weather data from target location.
-        Location location = LocationHelper.getLocation(getActivity());
-        if (null == location) {
-            Toast.makeText(getContext(), "Can not get location info, Made a mock location, Please check permission!",
-                    Toast.LENGTH_SHORT).show();
-
-            // Made a mock data for test.
-            retrieveWeatherData(MOCK_LATITUDE, MOCK_LONGITUDE);
-        } else {
-            retrieveWeatherData(location.getLatitude(), location.getLongitude());
-        }
     }
 
     /**
-     * Retrieve weather data from data repository.
+     * Retrieve calendar data from data repository,
+     * Note that: calendar data may from generated data or user calendar data.
+     */
+    private void retrieveCalendarData() {
+        final List<Day> days = DataRepository.retrieveCalendarDateList(getActivity().getAssets());
+        mAgendaView.setAgendaDataSource(days);
+        mCalendarView.setCalendarDataSource(days);
+    }
+
+    /**
+     * Retrieve weather data from data repository with target location
      *
      * @param latitude
      * @param longitude

@@ -31,6 +31,7 @@ import static com.yat3s.calendar.R.id.toolbar;
 public class MainActivity extends AppCompatActivity {
     private static final String TAG = "MainActivity";
 
+    // The tab item index.
     private static final int NAVIGATION_TAB_INDEX_INBOX = 0;
     private static final int NAVIGATION_TAB_INDEX_CALENDAR = 1;
     private static final int NAVIGATION_TAB_INDEX_FILE = 2;
@@ -84,7 +85,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     /**
-     * Configure toolbar and DrawLayout
+     * Configure toolbar and DrawLayout.
      * {@link DrawerLayout}
      */
     private void configureToolbar() {

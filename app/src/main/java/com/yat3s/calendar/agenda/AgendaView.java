@@ -37,8 +37,6 @@ public class AgendaView extends FrameLayout {
 
     private OnAgendaScrollListener mOnAgendaScrollListener;
 
-    private int mTotalDy = 0;
-
     private int mItemDy = 0;
 
     private int mLastFirstPosition;
@@ -56,13 +54,21 @@ public class AgendaView extends FrameLayout {
     public AgendaView(Context context, AttributeSet attrs, int defStyle) {
         super(context, attrs, defStyle);
 
-        initialization();
+        initialize();
     }
 
-    private void initialization() {
+    private void initialize() {
         LayoutInflater.from(getContext()).inflate(R.layout.view_agenda, this, true);
         ButterKnife.bind(this);
 
+        configureAgendaRecyclerView();
+    }
+
+    /**
+     * Configure agenda recycler view and register scroll listener to
+     * process scroll operations.
+     */
+    private void configureAgendaRecyclerView() {
         mLinearLayoutManager = new LinearLayoutManager(getContext());
         mAgendaRv.setLayoutManager(mLinearLayoutManager);
         mAgendaAdapter = new AgendaAdapter(getContext());
@@ -72,10 +78,8 @@ public class AgendaView extends FrameLayout {
             @Override
             public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
                 super.onScrolled(recyclerView, dx, dy);
-                int lastVisibleItemPosition = mLinearLayoutManager.findLastCompletelyVisibleItemPosition();
                 int firstVisibleItemPosition = mLinearLayoutManager.findFirstVisibleItemPosition();
 
-                mTotalDy += dy;
                 if (firstVisibleItemPosition != mLastFirstPosition) {
                     if (null != mOnAgendaScrollListener && dy != 0) {
                         mOnAgendaScrollListener.onFirstVisibleItemPositionChanged(firstVisibleItemPosition);
@@ -93,7 +97,7 @@ public class AgendaView extends FrameLayout {
                 } else {
                     mItemDy += dy;
                 }
-                moveHeader(mItemDy);
+                translateHeader(mItemDy);
             }
 
             @Override
@@ -107,7 +111,7 @@ public class AgendaView extends FrameLayout {
     }
 
     /**
-     * Set agenda view data source
+     * Set agenda view data source and make today agenda as default first.
      *
      * @param dataSource
      */
@@ -126,6 +130,12 @@ public class AgendaView extends FrameLayout {
         }
     }
 
+    /**
+     * Update weather data source and notify adapter.
+     * {@link AgendaAdapter#updateWeatherDataSource(WeatherDataSource)}
+     *
+     * @param weatherDataSource
+     */
     public void updateWeatherDataSource(WeatherDataSource weatherDataSource) {
         mAgendaAdapter.updateWeatherDataSource(weatherDataSource);
     }
@@ -155,7 +165,12 @@ public class AgendaView extends FrameLayout {
         mHeaderTv.setTextColor(getResources().getColor(day.isToday ? R.color.colorPrimary : R.color.textColorGrey));
     }
 
-    private void moveHeader(int dy) {
+    /**
+     * Translate section header while agenda scrolling.
+     *
+     * @param dy the distance of section header translation.
+     */
+    private void translateHeader(int dy) {
         if (dy < 0) {
             return;
         }

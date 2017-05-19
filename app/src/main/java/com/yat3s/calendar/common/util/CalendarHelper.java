@@ -126,6 +126,14 @@ public class CalendarHelper {
         return events;
     }
 
+    /**
+     * Judge two time whether is a same day.
+     * Same when year and day of year is equal.
+     *
+     * @param millisecond1
+     * @param millisecond2
+     * @return
+     */
     public static boolean isSameDay(long millisecond1, long millisecond2) {
         Calendar calendar1 = Calendar.getInstance();
         Calendar calendar2 = Calendar.getInstance();
