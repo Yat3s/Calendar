@@ -6,6 +6,7 @@ import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
+import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -85,11 +86,15 @@ public class AgendaView extends FrameLayout {
             public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
                 super.onScrolled(recyclerView, dx, dy);
                 int firstVisibleItemPosition = mLinearLayoutManager.findFirstVisibleItemPosition();
-                int firstCompletelyVisibleItemPosition = mLinearLayoutManager.findFirstCompletelyVisibleItemPosition();
-                float firstItemY = mLinearLayoutManager.findViewByPosition(firstCompletelyVisibleItemPosition).getY();
 
-                // Update header location
-                translateHeader((int) (mHeaderLayout.getHeight() - firstItemY - mDividerHeight));
+                // Update header location.
+                int firstCompletelyVisibleItemPosition = mLinearLayoutManager.findFirstCompletelyVisibleItemPosition();
+                View firstCompleteVisibleView = mLinearLayoutManager.findViewByPosition(firstCompletelyVisibleItemPosition);
+                float firstCompleteVisibleViewY = 0.0f;
+                if (null != firstCompleteVisibleView) {
+                    firstCompleteVisibleViewY = firstCompleteVisibleView.getY();
+                }
+                translateHeader((int) (mHeaderLayout.getHeight() - firstCompleteVisibleViewY - mDividerHeight));
 
                 if (null != mOnAgendaScrollListener) {
                     mOnAgendaScrollListener.onScrolled(dy);
