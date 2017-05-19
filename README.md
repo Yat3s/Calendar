@@ -54,7 +54,6 @@ Process request and response:
 Because data is too sparse and It only storage on `SharePreference`.
 
 ### 3rd party
-
 **RxJava**  
 RxJava is a Java VM implementation of Reactive Extensions: a library for composing asynchronous and event-based programs by using observable sequences.  
 Ref: https://github.com/ReactiveX/RxJava
@@ -73,6 +72,9 @@ Ref: https://github.com/JoanZapata/android-iconify
 
 ### Bugs and Feedback
 It 's my pleasure to ask questions or report bugs or discussions for me, you can tell me from [Github Issues](https://github.com/Yat3s/Calendar/issues)
+
+### demonstrate
+![preview](https://cloud.githubusercontent.com/assets/14801837/26260749/005f4f7a-3d01-11e7-962f-55cfaa099c76.gif)
 
 ### Others
 I hope I can get into the next round of interviews, **I love Microsoft**~lol
