@@ -42,6 +42,7 @@ public class AgendaAdapter extends BaseAdapter<Day> {
         // Bind common data.
         holder.setText(R.id.date_tv, day.getDateSectionString())
                 .setTextColorRes(R.id.date_tv, day.isToday ? R.color.colorPrimary : R.color.textColorGrey)
+                .setBackgroundResource(R.id.date_tv, day.isToday ? R.color.blackSqueeze : R.color.md_white_1000)
                 .setOnClickListener(R.id.event_layout, new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {

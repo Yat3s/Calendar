@@ -46,7 +46,8 @@ public class CalendarAdapter extends BaseAdapter<Day> {
                 .setVisible(R.id.month_tv, day.isFirstDayInMonth)
                 .setVisible(R.id.year_tv, !day.isThisYear && day.isFirstDayInMonth)
                 .setBackgroundResource(R.id.root_layout,
-                        (day.month & 1) > 0 ? R.drawable.selector_common : R.drawable.selector_common_grey);
+                        day.isToday ? R.color.blackSqueeze :
+                                (day.month & 1) > 0 ? R.drawable.selector_common : R.drawable.selector_common_grey);
 
         // Is today
         ((TextView) holder.getView(R.id.day_tv)).setTypeface(null, day.isToday ? Typeface.BOLD : Typeface.NORMAL);

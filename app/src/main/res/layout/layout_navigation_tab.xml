@@ -3,7 +3,7 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="@dimen/navigationHeight"
+    android:layout_height="@dimen/navigation_height"
     android:background="@color/md_white_1000"
     android:orientation="horizontal"
     tools:showIn="@layout/activity_main">
