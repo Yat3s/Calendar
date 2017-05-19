@@ -30,6 +30,8 @@ import rx.subscriptions.CompositeSubscription;
  */
 public class CalendarFragment extends BaseFragment {
     private static final String TAG = "CalendarFragment";
+
+    // Mock location when location service is disable.
     private static final double MOCK_LATITUDE = 39.9042;
     private static final double MOCK_LONGITUDE = 116.4074;
 
@@ -91,7 +93,6 @@ public class CalendarFragment extends BaseFragment {
         mFab.setImageDrawable(new IconDrawable(getContext(), MaterialIcons.md_add)
                 .colorRes(R.color.md_white_1000)
                 .actionBarSize());
-
     }
 
     /**
