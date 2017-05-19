@@ -87,7 +87,7 @@ public class CalendarFragment extends BaseFragment {
         mFab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(getContext(), "Add event", Toast.LENGTH_SHORT).show();
+                App.startNewEventActivity(getContext());
             }
         });
         mFab.setImageDrawable(new IconDrawable(getContext(), MaterialIcons.md_add)

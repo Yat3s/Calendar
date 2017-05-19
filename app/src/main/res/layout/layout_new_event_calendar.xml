@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:gravity="center_vertical"
+    android:orientation="horizontal"
+    android:paddingRight="@dimen/new_event_item_padding"
+    tools:showIn="@layout/activity_new_event">
+
+    <com.joanzapata.iconify.widget.IconTextView
+        style="@style/AppTheme.NewEvent.Icon"
+        android:text="{md-assignment}"/>
+
+    <TextView
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:textColor="@color/textColorGrey"
+        android:text="Calendar"/>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="right"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Yat3s Calendar"
+            android:textColor="@color/elm"
+            android:textStyle="bold"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:text="Hawkoyates@gmail.com"
+            android:textColor="@color/elm"
+            android:textSize="@dimen/text_size_small"/>
+    </LinearLayout>
+</LinearLayout>

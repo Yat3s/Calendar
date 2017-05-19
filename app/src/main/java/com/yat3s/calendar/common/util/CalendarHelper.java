@@ -153,7 +153,7 @@ public class CalendarHelper {
     }
 
     public static String getInterval(long fromMillisecond, long toMillisecond) {
-        long intervalMills = toMillisecond - fromMillisecond;
+        long intervalMills = Math.abs(toMillisecond - fromMillisecond);
         if (intervalMills >= 24 * 60 * 60 * 1000) {
             return intervalMills / (24 * 60 * 60 * 1000) + " d";
         } else if (intervalMills >= 60 * 60 * 1000) {

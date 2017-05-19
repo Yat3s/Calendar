@@ -99,6 +99,14 @@ public class Day {
         return events;
     }
 
+    public Event getEvent() {
+        if (hasEvent()) {
+            // Just get first event.
+            return events.get(0);
+        }
+        return null;
+    }
+
     public boolean hasEvent() {
         return events != null && this.events.size() > 0;
     }

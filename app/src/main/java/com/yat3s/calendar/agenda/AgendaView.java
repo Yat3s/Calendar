@@ -7,9 +7,11 @@ import android.text.TextUtils;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.widget.FrameLayout;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.yat3s.calendar.R;
+import com.yat3s.calendar.common.util.MetricsUtil;
 import com.yat3s.calendar.data.model.Day;
 import com.yat3s.calendar.data.source.WeatherDataSource;
 
@@ -31,13 +33,16 @@ public class AgendaView extends FrameLayout {
     @BindView(R.id.header_tv)
     TextView mHeaderTv;
 
+    @BindView(R.id.header_layout)
+    LinearLayout mHeaderLayout;
+
     private LinearLayoutManager mLinearLayoutManager;
 
     private AgendaAdapter mAgendaAdapter;
 
     private OnAgendaScrollListener mOnAgendaScrollListener;
 
-    private int mItemDy = 0;
+    private float mDividerHeight;
 
     private int mLastFirstPosition;
 
@@ -74,16 +79,21 @@ public class AgendaView extends FrameLayout {
         mAgendaAdapter = new AgendaAdapter(getContext());
         mAgendaRv.setAdapter(mAgendaAdapter);
 
+        mDividerHeight = MetricsUtil.dp2px(getContext(), getResources().getDimension(R.dimen.divider_size));
         mAgendaRv.addOnScrollListener(new RecyclerView.OnScrollListener() {
             @Override
             public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
                 super.onScrolled(recyclerView, dx, dy);
                 int firstVisibleItemPosition = mLinearLayoutManager.findFirstVisibleItemPosition();
+                int firstCompletelyVisibleItemPosition = mLinearLayoutManager.findFirstCompletelyVisibleItemPosition();
+                float firstItemY = mLinearLayoutManager.findViewByPosition(firstCompletelyVisibleItemPosition).getY();
+
+                // Update header location
+                translateHeader((int) (mHeaderLayout.getHeight() - firstItemY - mDividerHeight));
 
                 if (null != mOnAgendaScrollListener) {
                     mOnAgendaScrollListener.onScrolled(dy);
                 }
-
                 if (firstVisibleItemPosition != mLastFirstPosition) {
                     if (null != mOnAgendaScrollListener && dy != 0) {
                         mOnAgendaScrollListener.onFirstVisibleItemPositionChanged(firstVisibleItemPosition);
@@ -91,18 +101,14 @@ public class AgendaView extends FrameLayout {
                     if (firstVisibleItemPosition > 0 &&
                             firstVisibleItemPosition < mAgendaAdapter.getDataSource().size()) {
                         Day firstVisibleDay = mAgendaAdapter.getDataSource().get(firstVisibleItemPosition);
-                        setHeaderText(firstVisibleDay);
+                        updateHeaderText(firstVisibleDay);
                         if (!TextUtils.equals(firstVisibleDay.monthName, mDisplayMonth) && null != mOnAgendaScrollListener) {
                             mOnAgendaScrollListener.onDisplayMonthChanged(firstVisibleDay.monthName);
                             mDisplayMonth = firstVisibleDay.monthName;
                         }
                     }
-                    mItemDy = 0;
                     mLastFirstPosition = firstVisibleItemPosition;
-                } else {
-                    mItemDy += dy;
                 }
-                translateHeader(mItemDy);
             }
 
             @Override
@@ -127,7 +133,7 @@ public class AgendaView extends FrameLayout {
         if (null != dataSource && dataSource.size() > 0) {
             for (int idx = 0; idx < dataSource.size(); idx++) {
                 if (dataSource.get(idx).isToday) {
-                    setHeaderText(dataSource.get(idx));
+                    updateHeaderText(dataSource.get(idx));
                     scrollToPosition(idx);
                     break;
                 }
@@ -165,9 +171,15 @@ public class AgendaView extends FrameLayout {
         mOnAgendaScrollListener = scrollListener;
     }
 
-    private void setHeaderText(Day day) {
+    /**
+     * Update header text
+     *
+     * @param day
+     */
+    private void updateHeaderText(Day day) {
         mHeaderTv.setText(day.getDateSectionString());
         mHeaderTv.setTextColor(getResources().getColor(day.isToday ? R.color.colorPrimary : R.color.textColorGrey));
+        mHeaderTv.setBackgroundResource(day.isToday ? R.color.blackSqueeze : R.color.md_white_1000);
     }
 
     /**
@@ -176,12 +188,14 @@ public class AgendaView extends FrameLayout {
      * @param dy the distance of section header translation.
      */
     private void translateHeader(int dy) {
-        if (dy < 0) {
-            return;
+        // Just section header
+        if (dy >= mHeaderLayout.getHeight() || dy < 0) {
+            dy = 0;
         }
-        FrameLayout.LayoutParams layoutParams = (FrameLayout.LayoutParams) mHeaderTv.getLayoutParams();
+
+        FrameLayout.LayoutParams layoutParams = (FrameLayout.LayoutParams) mHeaderLayout.getLayoutParams();
         layoutParams.setMargins(0, -dy, 0, 0);
-        mHeaderTv.setLayoutParams(layoutParams);
+        mHeaderLayout.setLayoutParams(layoutParams);
     }
 
     /**

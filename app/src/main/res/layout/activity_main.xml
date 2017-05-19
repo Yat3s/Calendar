@@ -31,12 +31,12 @@
 
                 <com.joanzapata.iconify.widget.IconTextView
                     android:id="@+id/menu_option_setting"
-                    style="@style/MenuStyle"
+                    style="@style/AppTheme.MenuStyle"
                     android:text="@string/icon_setting"/>
 
                 <com.joanzapata.iconify.widget.IconTextView
                     android:id="@+id/menu_option_optional"
-                    style="@style/MenuStyle"
+                    style="@style/AppTheme.MenuStyle"
                     android:text="@string/icon_event_note"/>
             </android.support.v7.widget.Toolbar>
         </android.support.design.widget.AppBarLayout>

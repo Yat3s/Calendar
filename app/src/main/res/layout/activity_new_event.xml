@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/md_white_1000"
+    android:fitsSystemWindows="true"
+    android:orientation="vertical">
+
+    <android.support.design.widget.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/elm"
+            android:minHeight="?attr/actionBarSize"
+            android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+            app:popupTheme="@style/ThemeOverlay.AppCompat.Light">
+
+            <com.joanzapata.iconify.widget.IconTextView
+                android:id="@+id/menu_commit"
+                style="@style/AppTheme.MenuStyle"
+                android:text="{md-check}"/>
+        </android.support.v7.widget.Toolbar>
+    </android.support.design.widget.AppBarLayout>
+
+    <include layout="@layout/layout_new_event_title"/>
+
+    <View style="@style/AppTheme.NewEvent.Divider"/>
+
+    <include layout="@layout/layout_new_event_all_day_switch"/>
+
+    <View style="@style/AppTheme.NewEvent.Divider"/>
+
+    <include layout="@layout/layout_new_event_people"/>
+
+    <View style="@style/AppTheme.NewEvent.Divider"/>
+
+    <include layout="@layout/layout_new_event_location"/>
+
+    <View style="@style/AppTheme.NewEvent.Divider"/>
+
+    <include layout="@layout/layout_new_event_calendar"/>
+
+    <View style="@style/AppTheme.NewEvent.Divider"/>
+
+    <include layout="@layout/layout_new_event_alert"/>
+
+    <View style="@style/AppTheme.NewEvent.Divider"/>
+
+    <include layout="@layout/layout_new_event_description"/>
+
+    <View style="@style/AppTheme.NewEvent.Divider"/>
+
+</LinearLayout>

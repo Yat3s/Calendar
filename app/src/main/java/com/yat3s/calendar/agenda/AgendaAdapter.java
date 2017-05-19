@@ -9,6 +9,7 @@ import android.text.style.ForegroundColorSpan;
 import android.view.View;
 import android.widget.LinearLayout;
 
+import com.yat3s.calendar.App;
 import com.yat3s.calendar.R;
 import com.yat3s.calendar.common.util.CalendarHelper;
 import com.yat3s.calendar.common.widget.BaseAdapter;
@@ -38,7 +39,7 @@ public class AgendaAdapter extends BaseAdapter<Day> {
     }
 
     @Override
-    protected void bindDataToItemView(BaseViewHolder holder, Day day, int position) {
+    protected void bindDataToItemView(BaseViewHolder holder, final Day day, int position) {
         // Bind common data.
         holder.setText(R.id.date_tv, day.getDateSectionString())
                 .setTextColorRes(R.id.date_tv, day.isToday ? R.color.colorPrimary : R.color.textColorGrey)
@@ -46,7 +47,11 @@ public class AgendaAdapter extends BaseAdapter<Day> {
                 .setOnClickListener(R.id.event_layout, new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-
+                        if (day.hasEvent()) {
+                            App.startEventDetailActivity(mContext, day.getEvent());
+                        } else {
+                            App.startNewEventActivity(mContext);
+                        }
                     }
                 });
 
@@ -63,8 +68,8 @@ public class AgendaAdapter extends BaseAdapter<Day> {
         Event event = day.getEvents().get(0);
 
         // Set duration data.
-        String startAt = event.allDay == 1 ? "ALL DAY" : CalendarHelper.getHour(event.eventStart);
-        String duration = event.allDay == 1 ? "1d" : CalendarHelper.getInterval(event.eventStart, event.eventEnd);
+        String startAt = event.isAllDay()? "ALL DAY" : CalendarHelper.getHour(event.eventStart);
+        String duration = event.isAllDay() ? "1d" : CalendarHelper.getInterval(event.eventStart, event.eventEnd);
         SpannableString durationSpannableString = new SpannableString(startAt + "\n" + duration);
         durationSpannableString.setSpan(new ForegroundColorSpan(Color.BLACK),
                 0, startAt.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);

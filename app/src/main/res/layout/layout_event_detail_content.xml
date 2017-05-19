@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    tools:showIn="@layout/activity_event_detail">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:paddingRight="@dimen/new_event_item_padding">
+
+        <com.joanzapata.iconify.widget.IconTextView
+            style="@style/AppTheme.NewEvent.Icon"
+            android:text="{md-schedule}"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/date_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Sunday"
+                android:textColor="@color/md_black_1000"
+                android:textSize="@dimen/text_size_small"/>
+
+            <TextView
+                android:id="@+id/duration_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:textColor="@color/textColorGrey"
+                android:textSize="@dimen/text_size_small"/>
+        </LinearLayout>
+    </LinearLayout>
+
+    <View style="@style/AppTheme.NewEvent.Divider"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:paddingRight="@dimen/new_event_item_padding">
+
+            <com.joanzapata.iconify.widget.IconTextView
+                style="@style/AppTheme.NewEvent.Icon"
+                android:text="{md-add-alert}"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="30 minutes before"
+                android:textColor="@color/textColorDark"/>
+        </LinearLayout>
+
+        <View style="@style/AppTheme.NewEvent.Divider"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:paddingRight="@dimen/new_event_item_padding">
+
+        <com.joanzapata.iconify.widget.IconTextView
+            style="@style/AppTheme.NewEvent.Icon"
+            android:text="{md-subject}"/>
+
+        <TextView
+            android:id="@+id/description_et"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Some descriptions for mock data"
+            android:textColor="@color/md_black_1000"/>
+    </LinearLayout>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="12dp"
+        android:text="Attendees"
+        android:textColor="?attr/colorPrimary"
+        android:textStyle="bold"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:gravity="center"
+            android:layout_margin="@dimen/new_event_icon_divide_width"
+            android:textSize="@dimen/text_size_large"
+            android:textColor="@color/md_white_1000"
+            android:background="@drawable/shape_circle_grey"
+            android:text="H"/>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/new_event_icon_divide_width"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Yat3s"
+                android:textColor="@color/md_black_1000"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:text="hawkoyates@gmail.com"
+                android:textSize="@dimen/text_size_small"/>
+        </LinearLayout>
+    </LinearLayout>
+
+    <View style="@style/AppTheme.NewEvent.Divider"/>
+
+
+</LinearLayout>
+
+    
