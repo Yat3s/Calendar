@@ -1,5 +1,6 @@
 # Calendar
 A nice interaction calendar widget containing lists of agenda events and weather conditions.
+![](https://github.com/Yat3s/Calendar/blob/dev/art/screenshot.png)
 
 ### Compile & Build
 ```
@@ -27,6 +28,10 @@ $ ./gradlew build
 - It retrieve all weather data from [Darksky](https://darksky.net),  and it will `requestLastKnownLocation` for determine where you are.
 - You can view `WeatherDataSource`and all weather data can get from it.
 
+**Event**
+- `NewEvent`:  Sorry for that , I don't have enough time to implement all logics, so it's just a UI layer.
+- `EventDetail`:  Get event from selected agenda item and show event detail, but it is not completely.
+
 **DataRepository**
 - This is a data repository defined all `Observable`for retrieve data.
 - It contains some `Subscription` to process retrieve data from local cache or remote, you need not know data source come from.
@@ -43,7 +48,7 @@ Retrieve data from repository:
 Process request and response:
 ![image](https://cloud.githubusercontent.com/assets/14801837/26238781/24a6a8dc-3cad-11e7-934a-e9bfdd3a2565.png)
 #### Persistent
-Because data is too sparse and It only storage on `SharePreference`
+Because data is too sparse and It only storage on `SharePreference`.
 
 ### 3rd party
 
