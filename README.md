@@ -2,7 +2,7 @@
 A nice interaction calendar widget containing lists of agenda events and weather conditions.
 
 ### Priview
-![](https://github.com/Yat3s/Calendar/blob/dev/art/screenshot.png)
+![image](https://cloud.githubusercontent.com/assets/14801837/26259950/f1c459cc-3cfd-11e7-89c9-c0c744adefb5.png)
 
 ### Compile & Build
 ```
