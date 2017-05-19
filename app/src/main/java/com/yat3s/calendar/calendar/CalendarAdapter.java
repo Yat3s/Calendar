@@ -126,13 +126,18 @@ public class CalendarAdapter extends BaseAdapter<Day> {
         }
     }
 
-
     @Override
     public void onAttachedToRecyclerView(RecyclerView recyclerView) {
         mRecyclerView = recyclerView;
         super.onAttachedToRecyclerView(recyclerView);
     }
 
+    /**
+     * Register item select listener.
+     * NOTE: it only callback from user click item.
+     *
+     * @param clickListener
+     */
     public void setOnItemSelectedListener(OnItemSelectedListener<Day> clickListener) {
         mOnItemSelectedListener = clickListener;
     }
