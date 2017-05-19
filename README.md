@@ -7,10 +7,10 @@ and weather data integrate in it.
 ### Protocol
 **Network**
 Retrieve data from repository:
-![image](https://cloud.githubusercontent.com/assets/14801837/26238462/bbacb336-3cab-11e7-9fb1-c0bfd1a7062b.png)
+![image](https://cloud.githubusercontent.com/assets/14801837/26238642/7e58389c-3cac-11e7-89aa-9dea0a0eebdc.png)
 
 Process request and response:
-![image](https://cloud.githubusercontent.com/assets/14801837/26238524/0293f8c2-3cac-11e7-9f3c-c6559c57bee9.png)
+![image](https://cloud.githubusercontent.com/assets/14801837/26238658/9390152c-3cac-11e7-87b1-77d56043cbdd.png)
 
 
 ### Specification
