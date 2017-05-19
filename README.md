@@ -16,7 +16,8 @@ $ ./gradlew build
 	- `expand()` and `collapse()`  is a method for process calendar view state, It will update row count to `CALENDAR_EXPANSION_ROW` while expand and update row count to `CALENDAR_FOLD_ROW` while collapse.
 	- `setOnItemSelectedListener()` is a trigger for item has be selected, **But it is ONLY trigger from user click item.**  
 	- `updatedCurrentSelectedItem()` update current highlight/checked item and uncheck last checked item.
-- `CalendarAdapter`: A custom `RecyclerViewAdapter`,  contain all items data bind.
+- `CalendarAdapter`: A custom `RecyclerViewAdapter`,  contain all iteRetrieve_data_from_repository.png
+                                                                     Process_request_and_response.pngms data bind.
 
 **Agenda**
 - `AgendaView`: A custom agenda view contains a event list and recent weather data.
