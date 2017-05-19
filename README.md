@@ -12,6 +12,9 @@ $ git checkout dev
 $ ./gradlew build
 ```
 
+### Download
+You can download from [Release 1.0.0](https://github.com/Yat3s/Calendar/releases/download/1.0.0/Calendar.apk)
+
 ### Specification
 **Calendar**
 -  `CalendarView`:  A custom calendar view contains week indicator and calendar date list,  also contains some APIs for date select and list update:
