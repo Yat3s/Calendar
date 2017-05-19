@@ -48,20 +48,20 @@ Because data is too sparse and It only storage on `SharePreference`
 ### 3rd party
 
 **RxJava**  
-RxJava is a Java VM implementation of Reactive Extensions: a library for composing asynchronous and event-based programs by using observable sequences.
-https://github.com/ReactiveX/RxJava
+RxJava is a Java VM implementation of Reactive Extensions: a library for composing asynchronous and event-based programs by using observable sequences.  
+Ref: https://github.com/ReactiveX/RxJava
 
 **Retrofit**  
-A type-safe HTTP client for Android and Java by Square, Inc. and It is flexible for add interceptor and converter.
-https://github.com/square/retrofit
+A type-safe HTTP client for Android and Java by Square, Inc. and It is flexible for add interceptor and converter.  
+Ref: https://github.com/square/retrofit
 
 **Butterknife**  
-Bind Android views and callbacks to fields and methods,  it can simplify many find view code with some plugin.
-https://github.com/JakeWharton/butterknife
+Bind Android views and callbacks to fields and methods,  it can simplify many find view code with some plugin.  
+Ref: https://github.com/JakeWharton/butterknife
 
 **Iconify**  
-Iconify offers you a huge collection of vector icons to choose from, and an intuitive way to add and customize them in your Android app.
-https://github.com/JoanZapata/android-iconify
+Iconify offers you a huge collection of vector icons to choose from, and an intuitive way to add and customize them in your Android app.  
+Ref: https://github.com/JoanZapata/android-iconify
 
 ### Bugs and Feedback
 It 's my pleasure to ask questions or report bugs or discussions for me, you can tell me from [Github Issues](https://github.com/Yat3s/Calendar/issues)
