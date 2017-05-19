@@ -51,8 +51,8 @@
     </style>
 
     <style name="AppTheme.NewEvent.Icon">
-        <item name="android:layout_width">@dimen/new_event_icon_size</item>
-        <item name="android:layout_height">@dimen/new_event_icon_size</item>
+        <item name="android:layout_width">@dimen/icon_size</item>
+        <item name="android:layout_height">@dimen/icon_size</item>
         <item name="android:gravity">center</item>
         <item name="android:textSize">@dimen/text_size_large_x</item>
         <item name="android:layout_marginRight">@dimen/new_event_icon_divide_width</item>

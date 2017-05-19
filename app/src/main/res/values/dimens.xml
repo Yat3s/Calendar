@@ -17,7 +17,7 @@
     <dimen name="agenda_event_duration_margin">12dp</dimen>
     <dimen name="text_size_middle">16sp</dimen>
     <dimen name="temperature_icon_size">24dp</dimen>
-    <dimen name="new_event_icon_size">64dp</dimen>
+    <dimen name="icon_size">64dp</dimen>
     <dimen name="new_event_item_padding">12dp</dimen>
     <dimen name="new_event_icon_divide_width">12dp</dimen>
     <dimen name="header_height">160dp</dimen>

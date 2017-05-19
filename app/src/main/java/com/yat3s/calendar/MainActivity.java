@@ -1,6 +1,8 @@
 package com.yat3s.calendar;
 
+import android.content.Intent;
 import android.content.res.Resources;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
@@ -12,7 +14,6 @@ import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
@@ -30,6 +31,7 @@ import static com.yat3s.calendar.R.id.toolbar;
 
 public class MainActivity extends AppCompatActivity {
     private static final String TAG = "MainActivity";
+    private static final String GITHUB_URL = "https://github.com/Yat3s/Calendar";
 
     // The tab item index.
     private static final int NAVIGATION_TAB_INDEX_INBOX = 0;
@@ -107,6 +109,15 @@ public class MainActivity extends AppCompatActivity {
             mDrawerToggle.setDrawerIndicatorEnabled(true);
             mDrawerLayout.setDrawerListener(mDrawerToggle);
             mDrawerToggle.syncState();
+
+            if (null != mNavView.getHeaderView(0)) {
+                mNavView.getHeaderView(0).findViewById(R.id.github_layout).setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(GITHUB_URL)));
+                    }
+                });
+            }
         }
     }
 
