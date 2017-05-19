@@ -1,6 +1,5 @@
 # Calendar
-A nice interaction calendar widget, and it also contain agenda event,
-and weather data integrate in it. 
+A nice interaction calendar widget containing lists of agenda events and weather conditions.
 
 ### Compile & Build
 ```
