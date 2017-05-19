@@ -59,7 +59,8 @@ public class NewEventActivity extends AppCompatActivity {
         mMenuCommit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(NewEventActivity.this, "Create event failure.", Toast.LENGTH_SHORT).show();
+                Toast.makeText(NewEventActivity.this, "Sorry, I don't have enough time to complete this.", Toast.LENGTH_SHORT)
+                        .show();
                 finish();
             }
         });
