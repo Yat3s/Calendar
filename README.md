@@ -68,4 +68,4 @@ https://github.com/JoanZapata/android-iconify
 It 's my pleasure to ask questions or report bugs or discussions for me, you can tell me from [Github Issues](https://github.com/Yat3s/Calendar/issues)
 
 ### Others
-I hope I can get into the next round of interviews, **I love Microsoft~**lol
+I hope I can get into the next round of interviews, **I love Microsoft**~lol
