@@ -80,11 +80,16 @@ public class AgendaView extends FrameLayout {
                 super.onScrolled(recyclerView, dx, dy);
                 int firstVisibleItemPosition = mLinearLayoutManager.findFirstVisibleItemPosition();
 
+                if (null != mOnAgendaScrollListener) {
+                    mOnAgendaScrollListener.onScrolled(dy);
+                }
+
                 if (firstVisibleItemPosition != mLastFirstPosition) {
                     if (null != mOnAgendaScrollListener && dy != 0) {
                         mOnAgendaScrollListener.onFirstVisibleItemPositionChanged(firstVisibleItemPosition);
                     }
-                    if (firstVisibleItemPosition < mAgendaAdapter.getDataSource().size()) {
+                    if (firstVisibleItemPosition > 0 &&
+                            firstVisibleItemPosition < mAgendaAdapter.getDataSource().size()) {
                         Day firstVisibleDay = mAgendaAdapter.getDataSource().get(firstVisibleItemPosition);
                         setHeaderText(firstVisibleDay);
                         if (!TextUtils.equals(firstVisibleDay.monthName, mDisplayMonth) && null != mOnAgendaScrollListener) {
@@ -194,6 +199,8 @@ public class AgendaView extends FrameLayout {
     public interface OnAgendaScrollListener {
 
         void onFirstVisibleItemPositionChanged(int position);
+
+        void onScrolled(int dy);
 
         void onScrollStateChanged(int newState);
 

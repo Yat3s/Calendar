@@ -3,6 +3,7 @@ package com.yat3s.calendar;
 import android.location.Location;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
+import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.Toast;
 
@@ -107,8 +108,22 @@ public class CalendarFragment extends BaseFragment {
             }
 
             @Override
+            public void onScrolled(int dy) {
+                // FAB hide while scroll down, otherwise show.
+                if (dy > 0) {
+                    mFab.hide();
+                } else {
+                    mFab.show();
+                }
+            }
+
+            @Override
             public void onScrollStateChanged(int newState) {
                 mCalendarView.collapse();
+                // FAB show when scroll is idle.
+                if (newState == RecyclerView.SCROLL_STATE_IDLE) {
+                    mFab.show();
+                }
             }
 
             @Override
