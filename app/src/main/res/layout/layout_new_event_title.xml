@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:gravity="center_vertical"
+    android:orientation="horizontal"
+    android:paddingRight="@dimen/new_event_item_padding"
+    tools:showIn="@layout/activity_new_event">
+
+    <com.joanzapata.iconify.widget.IconTextView
+        style="@style/AppTheme.NewEvent.Icon"
+        android:text="{md-lens}"
+        android:textColor="@color/elm"
+        android:textSize="14sp"/>
+
+    <EditText
+        android:id="@+id/title_et"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@null"
+        android:hint="Title"
+        android:textSize="@dimen/text_size_middle"/>
+</LinearLayout>

@@ -28,193 +28,31 @@
         </android.support.v7.widget.Toolbar>
     </android.support.design.widget.AppBarLayout>
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center_vertical"
-        android:orientation="horizontal"
-        android:paddingRight="@dimen/new_event_item_padding">
-
-        <com.joanzapata.iconify.widget.IconTextView
-            style="@style/AppTheme.NewEvent.Icon"
-            android:text="{md-lens}"
-            android:textColor="@color/elm"
-            android:textSize="14sp"/>
-
-        <EditText
-            android:id="@+id/title_et"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@null"
-            android:hint="Title"
-            android:textSize="@dimen/text_size_middle"/>
-    </LinearLayout>
-
+    <include layout="@layout/layout_new_event_title"/>
 
     <View style="@style/AppTheme.NewEvent.Divider"/>
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center_vertical"
-        android:orientation="horizontal"
-        android:paddingRight="@dimen/new_event_item_padding">
-
-        <com.joanzapata.iconify.widget.IconTextView
-            style="@style/AppTheme.NewEvent.Icon"
-            android:text="{md-schedule}"/>
-
-        <TextView
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="All Day Event"
-            android:textColor="@color/textColorDark"/>
-
-        <android.support.v7.widget.SwitchCompat
-            android:id="@+id/all_day_switch"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
-    </LinearLayout>
-
+    <include layout="@layout/layout_new_event_all_day_switch"/>
 
     <View style="@style/AppTheme.NewEvent.Divider"/>
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center_vertical"
-        android:orientation="horizontal"
-        android:paddingRight="@dimen/new_event_item_padding">
-
-        <com.joanzapata.iconify.widget.IconTextView
-            style="@style/AppTheme.NewEvent.Icon"
-            android:text="{md-person}"/>
-
-        <TextView
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="Person"/>
-
-    </LinearLayout>
+    <include layout="@layout/layout_new_event_people"/>
 
     <View style="@style/AppTheme.NewEvent.Divider"/>
 
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center_vertical"
-        android:orientation="horizontal"
-        android:paddingRight="@dimen/new_event_item_padding">
-
-        <com.joanzapata.iconify.widget.IconTextView
-            style="@style/AppTheme.NewEvent.Icon"
-            android:text="{md-subject}"/>
-
-        <EditText
-            android:id="@+id/description_et"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@null"
-            android:hint="Description"
-            android:textSize="@dimen/text_size_middle"/>
-
-    </LinearLayout>
-
+    <include layout="@layout/layout_new_event_location"/>
 
     <View style="@style/AppTheme.NewEvent.Divider"/>
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center_vertical"
-        android:orientation="horizontal"
-        android:paddingRight="@dimen/new_event_item_padding">
-
-        <com.joanzapata.iconify.widget.IconTextView
-            style="@style/AppTheme.NewEvent.Icon"
-            android:text="{md-location-on}"/>
-
-        <TextView
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="Location"/>
-
-    </LinearLayout>
-
+    <include layout="@layout/layout_new_event_calendar"/>
 
     <View style="@style/AppTheme.NewEvent.Divider"/>
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center_vertical"
-        android:orientation="horizontal"
-        android:paddingRight="@dimen/new_event_item_padding">
-
-        <com.joanzapata.iconify.widget.IconTextView
-            style="@style/AppTheme.NewEvent.Icon"
-            android:text="{md-assignment}"/>
-
-        <TextView
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="Calendar"/>
-
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:gravity="right"
-            android:orientation="vertical">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Yat3s Calendar"
-                android:textColor="@color/elm"
-                android:textStyle="bold"/>
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="4dp"
-                android:text="Hawkoyates@gmail.com"
-                android:textColor="@color/elm"
-                android:textSize="@dimen/text_size_small"/>
-        </LinearLayout>
-    </LinearLayout>
+    <include layout="@layout/layout_new_event_alert"/>
 
     <View style="@style/AppTheme.NewEvent.Divider"/>
 
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center_vertical"
-        android:orientation="horizontal"
-        android:paddingRight="@dimen/new_event_item_padding">
-
-        <com.joanzapata.iconify.widget.IconTextView
-            style="@style/AppTheme.NewEvent.Icon"
-            android:text="{md-access-alarm}"/>
-
-        <TextView
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="Alert"/>
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="15 minutes before"
-            android:textColor="@color/textColorDark"/>
-
-    </LinearLayout>
+    <include layout="@layout/layout_new_event_description"/>
 
     <View style="@style/AppTheme.NewEvent.Divider"/>
 

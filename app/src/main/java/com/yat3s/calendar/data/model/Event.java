@@ -2,12 +2,14 @@ package com.yat3s.calendar.data.model;
 
 import android.graphics.Color;
 
+import java.io.Serializable;
+
 /**
  * Created by Yat3s on 16/05/2017.
  * Email: hawkoyates@gmail.com
  * GitHub: https://github.com/yat3s
  */
-public class Event {
+public class Event implements Serializable {
 
     // The event belong which calendar.
     public String calendarId;
@@ -49,5 +51,9 @@ public class Event {
 
     public int getDisplayColor() {
         return Color.parseColor("#" + Integer.toHexString(-displayColor));
+    }
+
+    public boolean isAllDay() {
+        return allDay == 1;
     }
 }

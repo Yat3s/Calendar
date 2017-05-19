@@ -6,6 +6,7 @@ import android.support.v7.widget.SwitchCompat;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.joanzapata.iconify.IconDrawable;
 import com.joanzapata.iconify.fonts.MaterialIcons;
@@ -58,6 +59,7 @@ public class NewEventActivity extends AppCompatActivity {
         mMenuCommit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Toast.makeText(NewEventActivity.this, "Create event failure.", Toast.LENGTH_SHORT).show();
                 finish();
             }
         });

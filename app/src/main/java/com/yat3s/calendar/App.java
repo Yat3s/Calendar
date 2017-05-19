@@ -6,6 +6,8 @@ import android.content.Intent;
 
 import com.joanzapata.iconify.Iconify;
 import com.joanzapata.iconify.fonts.MaterialModule;
+import com.yat3s.calendar.data.model.Event;
+import com.yat3s.calendar.event.EventDetailActivity;
 import com.yat3s.calendar.event.NewEventActivity;
 
 /**
@@ -30,5 +32,11 @@ public class App extends Application {
 
     public static void startNewEventActivity(Context context) {
         context.startActivity(new Intent(context, NewEventActivity.class));
+    }
+
+    public static void startEventDetailActivity(Context context, Event event) {
+        Intent intent = new Intent(context, EventDetailActivity.class);
+        intent.putExtra(EventDetailActivity.EXTRA_EVENT, event);
+        context.startActivity(intent);
     }
 }

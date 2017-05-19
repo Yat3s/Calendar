@@ -48,7 +48,7 @@ public class AgendaAdapter extends BaseAdapter<Day> {
                     @Override
                     public void onClick(View v) {
                         if (day.hasEvent()) {
-
+                            App.startEventDetailActivity(mContext, day.getEvent());
                         } else {
                             App.startNewEventActivity(mContext);
                         }
@@ -68,8 +68,8 @@ public class AgendaAdapter extends BaseAdapter<Day> {
         Event event = day.getEvents().get(0);
 
         // Set duration data.
-        String startAt = event.allDay == 1 ? "ALL DAY" : CalendarHelper.getHour(event.eventStart);
-        String duration = event.allDay == 1 ? "1d" : CalendarHelper.getInterval(event.eventStart, event.eventEnd);
+        String startAt = event.isAllDay()? "ALL DAY" : CalendarHelper.getHour(event.eventStart);
+        String duration = event.isAllDay() ? "1d" : CalendarHelper.getInterval(event.eventStart, event.eventEnd);
         SpannableString durationSpannableString = new SpannableString(startAt + "\n" + duration);
         durationSpannableString.setSpan(new ForegroundColorSpan(Color.BLACK),
                 0, startAt.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);

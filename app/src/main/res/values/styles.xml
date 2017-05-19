@@ -16,6 +16,13 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
+    <style name="AppTheme.EventDetail" parent="Theme.AppCompat.Light.NoActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/sapphire</item>
+        <item name="colorPrimaryDark">@color/sapphire2</item>
+        <item name="colorAccent">@color/colorAccent</item>
+    </style>
+
     <style name="AppTheme.NavigationTabStyle">
         <item name="android:layout_width">0dp</item>
         <item name="android:layout_height">match_parent</item>
@@ -49,6 +56,6 @@
         <item name="android:gravity">center</item>
         <item name="android:textSize">@dimen/text_size_large_x</item>
         <item name="android:layout_marginRight">@dimen/new_event_icon_divide_width</item>
-        <item name="android:textColor">@color/md_grey_400</item>
+        <item name="android:textColor">@color/md_grey_500</item>
     </style>
 </resources>
