@@ -102,6 +102,7 @@ public class CalendarAdapter extends BaseAdapter<Day> {
             Day day = getDataSource().get(selectedPosition);
             day.isSelected = true;
             if (null != mRecyclerView) {
+                // If find view holder from recycler pool, update status immediately.
                 BaseViewHolder holder = (BaseViewHolder) mRecyclerView.findViewHolderForLayoutPosition(selectedPosition);
                 updateItemSelectableUI(day, holder);
             } else {
