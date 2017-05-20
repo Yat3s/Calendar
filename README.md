@@ -75,7 +75,7 @@ Ref: https://github.com/JoanZapata/android-iconify
 
 ### TODOs and Issues
 - Notify data after added event.
-- Strongly test code.
+- Strongly test code.  
 Others issues remain to resolve and it publish to :[Github Issues](https://github.com/Yat3s/Calendar/issues)
 
 ### Bugs and Feedback
