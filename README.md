@@ -1,7 +1,7 @@
 # Calendar
 A nice interaction calendar widget containing lists of agenda events and weather conditions.
 
-### Priview
+### Preview
 ![screenshot](https://cloud.githubusercontent.com/assets/14801837/26261424/a228a836-3d03-11e7-8d32-b595b7514ab1.png)
 
 ### Compile & Build
