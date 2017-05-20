@@ -70,6 +70,11 @@ Ref: https://github.com/JakeWharton/butterknife
 Iconify offers you a huge collection of vector icons to choose from, and an intuitive way to add and customize them in your Android app.  
 Ref: https://github.com/JoanZapata/android-iconify
 
+### TODOs and Issues
+- Notify data after added event.
+- Strongly test code.
+Others issues remain to resolve and it publish to :[Github Issues](https://github.com/Yat3s/Calendar/issues)
+
 ### Bugs and Feedback
 It 's my pleasure to ask questions or report bugs or discussions for me, you can tell me from [Github Issues](https://github.com/Yat3s/Calendar/issues)
 
