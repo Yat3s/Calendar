@@ -12,8 +12,13 @@ $ git checkout dev
 $ ./gradlew build
 ```
 
+### Test
+```
+$ ./gradlew test
+```
+
 ### Download
-You can download from [Release 1.0.0](https://github.com/Yat3s/Calendar/releases/download/1.0.0/Calendar.apk)
+You can download from [Release 1.0.1](https://github.com/Yat3s/Calendar/releases/download/1.0.1/Calendar.apk)
 
 ### Specification
 **Calendar**
