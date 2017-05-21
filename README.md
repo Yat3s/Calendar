@@ -62,19 +62,19 @@ Process request and response:
 Because data is too sparse and It only storage on `SharePreference`.
 
 ### 3rd party
-**RxJava**  
+- **RxJava**  
 RxJava is a Java VM implementation of Reactive Extensions: a library for composing asynchronous and event-based programs by using observable sequences.  
 Ref: https://github.com/ReactiveX/RxJava
 
-**Retrofit**  
+- **Retrofit**  
 A type-safe HTTP client for Android and Java by Square, Inc. and It is flexible for add interceptor and converter.  
 Ref: https://github.com/square/retrofit
 
-**Butterknife**  
+- **Butterknife**  
 Bind Android views and callbacks to fields and methods,  it can simplify many find view code with some plugin.  
 Ref: https://github.com/JakeWharton/butterknife
 
-**Iconify**  
+- **Iconify**  
 Iconify offers you a huge collection of vector icons to choose from, and an intuitive way to add and customize them in your Android app.  
 Ref: https://github.com/JoanZapata/android-iconify
 
