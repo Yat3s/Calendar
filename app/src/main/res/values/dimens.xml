@@ -21,4 +21,5 @@
     <dimen name="new_event_item_padding">12dp</dimen>
     <dimen name="new_event_icon_divide_width">12dp</dimen>
     <dimen name="header_height">160dp</dimen>
+    <dimen name="text_size_display">34sp</dimen>
 </resources>
