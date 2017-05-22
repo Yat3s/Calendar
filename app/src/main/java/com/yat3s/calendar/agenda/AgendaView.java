@@ -1,6 +1,8 @@
 package com.yat3s.calendar.agenda;
 
 import android.content.Context;
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
@@ -25,6 +27,10 @@ import butterknife.ButterKnife;
  * Created by Yat3s on 15/05/2017.
  * Email: hawkoyates@gmail.com
  * GitHub: https://github.com/yat3s
+ * <p>
+ * A custom view contain agenda list and some operation
+ * {@link #setOnAgendaScrollListener(OnAgendaScrollListener)}
+ * {@link #updateWeatherDataSource(WeatherDataSource)}
  */
 public class AgendaView extends FrameLayout {
     private static final String TAG = "AgendaView";
@@ -37,16 +43,21 @@ public class AgendaView extends FrameLayout {
     @BindView(R.id.header_layout)
     LinearLayout mHeaderLayout;
 
+    // The layout manager of agenda recycler view.
     private LinearLayoutManager mLinearLayoutManager;
 
+    // The adapter of agenda recycler view.
     private AgendaAdapter mAgendaAdapter;
 
     private OnAgendaScrollListener mOnAgendaScrollListener;
 
+    // The divider height in dp.
     private float mDividerHeight;
 
+    // The last first visible item position.
     private int mLastFirstPosition;
 
+    // Current item belong which month.
     private String mDisplayMonth;
 
     public AgendaView(Context context) {
@@ -96,6 +107,7 @@ public class AgendaView extends FrameLayout {
                 }
                 translateHeader((int) (mHeaderLayout.getHeight() - firstCompleteVisibleViewY - mDividerHeight));
 
+                // Trigger agenda listener.
                 if (null != mOnAgendaScrollListener) {
                     mOnAgendaScrollListener.onScrolled(dy);
                 }
@@ -129,7 +141,7 @@ public class AgendaView extends FrameLayout {
     /**
      * Set agenda view data source and make today agenda as default first.
      *
-     * @param dataSource
+     * @param dataSource {@link Day}
      */
     public void setAgendaDataSource(List<Day> dataSource) {
         mAgendaAdapter.addFirstDataSet(dataSource);
@@ -152,7 +164,7 @@ public class AgendaView extends FrameLayout {
      *
      * @param weatherDataSource
      */
-    public void updateWeatherDataSource(WeatherDataSource weatherDataSource) {
+    public void updateWeatherDataSource(@NonNull WeatherDataSource weatherDataSource) {
         mAgendaAdapter.updateWeatherDataSource(weatherDataSource);
     }
 
@@ -172,7 +184,7 @@ public class AgendaView extends FrameLayout {
      *
      * @param scrollListener {@link OnAgendaScrollListener}
      */
-    public void setOnAgendaScrollListener(OnAgendaScrollListener scrollListener) {
+    public void setOnAgendaScrollListener(@Nullable OnAgendaScrollListener scrollListener) {
         mOnAgendaScrollListener = scrollListener;
     }
 

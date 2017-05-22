@@ -14,6 +14,11 @@ public class RestClient {
     private static RestClient sInstance;
     private APIService mAPIService;
 
+    /**
+     * The singleton of RestClient.
+     * It will be used frequently.
+     * @return
+     */
     public static RestClient getInstance() {
         if (null == sInstance) {
             sInstance = new RestClient(APIConfig.BASE_URL);

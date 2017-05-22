@@ -14,6 +14,8 @@ import com.yat3s.calendar.event.NewEventActivity;
  * Created by Yat3s on 16/05/2017.
  * Email: hawkoyates@gmail.com
  * GitHub: https://github.com/yat3s
+ * <p>
+ * The application instance of this android application.
  */
 public class App extends Application {
     private static App sInstance;
@@ -26,6 +28,12 @@ public class App extends Application {
         sInstance = this;
     }
 
+    /**
+     * Get current singleton application instance for context.
+     * {@link Context}
+     *
+     * @return
+     */
     public Context getContext() {
         return sInstance;
     }

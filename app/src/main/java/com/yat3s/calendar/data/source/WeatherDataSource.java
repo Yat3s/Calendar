@@ -1,7 +1,5 @@
 package com.yat3s.calendar.data.source;
 
-import android.util.Log;
-
 import com.yat3s.calendar.R;
 
 import java.util.ArrayList;
@@ -100,6 +98,9 @@ public class WeatherDataSource {
         }
     }
 
+    /**
+     * Processing weather data including extracting all hourly data.
+     */
     public void processWeatherRawData() {
         if (null == hourly || null == hourly.data || hourly.data.size() <= HOURS_EVERY_DAY) {
             return;

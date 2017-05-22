@@ -27,6 +27,11 @@ import rx.subscriptions.CompositeSubscription;
  * Created by Yat3s on 13/05/2017.
  * Email: hawkoyates@gmail.com
  * GitHub: https://github.com/yat3s
+ * <p>
+ * Main calendar tab contain calendar view and agenda view.
+ * <p>
+ * {@link CalendarView}
+ * {@link AgendaView}
  */
 public class CalendarFragment extends BaseFragment {
     private static final String TAG = "CalendarFragment";
@@ -35,6 +40,7 @@ public class CalendarFragment extends BaseFragment {
     private static final double MOCK_LATITUDE = 39.9042;
     private static final double MOCK_LONGITUDE = 116.4074;
 
+    // The set including all subscriptions which user subscribed.
     private CompositeSubscription mCompositeSubscription;
     @BindView(R.id.calendar_view)
     CalendarView mCalendarView;

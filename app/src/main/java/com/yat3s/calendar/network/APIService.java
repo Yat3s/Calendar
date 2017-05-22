@@ -13,6 +13,12 @@ import rx.Observable;
  */
 public interface APIService {
 
+    /**
+     * Retrieve weather data from remote.
+     * @param latitude
+     * @param longitude
+     * @return
+     */
     @GET(APIConfig.ENDPOINT_RETRIEVE_WEATHER)
     Observable<WeatherDataSource> retrieveWeatherData(@Path(APIConfig.PATH_LATITUDE) double latitude,
                                                       @Path(APIConfig.PATH_LONGITUDE) double longitude);

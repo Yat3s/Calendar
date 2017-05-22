@@ -13,6 +13,8 @@ import butterknife.ButterKnife;
  * Created by Yat3s on 13/05/2017.
  * Email: hawkoyates@gmail.com
  * GitHub: https://github.com/yat3s
+ * <p>
+ * A abstract base fragment.
  */
 public abstract class BaseFragment extends Fragment {
     /**

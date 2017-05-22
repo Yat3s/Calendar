@@ -12,6 +12,7 @@ public class APIConfig {
     public static final String PATH_LONGITUDE = "longitude";
     public static final String BASE_URL = "https://api.darksky.net";
 
+    // The endpoint of retrieve weather data from darksky.
     public static final String ENDPOINT_RETRIEVE_WEATHER
             = "/forecast/" + BuildConfig.WEATHER_SECRET_KEY + "/{" + PATH_LATITUDE + "},{" + PATH_LONGITUDE + "}";
 }

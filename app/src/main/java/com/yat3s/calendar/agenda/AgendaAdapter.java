@@ -2,6 +2,7 @@ package com.yat3s.calendar.agenda;
 
 import android.content.Context;
 import android.graphics.Color;
+import android.support.annotation.NonNull;
 import android.text.SpannableString;
 import android.text.Spanned;
 import android.text.TextUtils;
@@ -26,12 +27,19 @@ import java.util.List;
  * Created by Yat3s on 15/05/2017.
  * Email: hawkoyates@gmail.com
  * GitHub: https://github.com/yat3s
+ * <p>
+ * The adapter of agenda, including processing all event and weather data.
  */
 public class AgendaAdapter extends BaseAdapter<Day> {
     private static final String TAG = "AgendaAdapter";
+
+    // The text size of event content while has event.
     private static final int TITLE_SIZE_HAS_EVENT = 14;
+
+    // The text size of event content while has event.
     private static final int TITLE_SIZE_NO_EVENT = 12;
 
+    // The weather data source from repository.
     private WeatherDataSource mWeatherDataSource;
 
     public AgendaAdapter(Context context) {
@@ -63,12 +71,18 @@ public class AgendaAdapter extends BaseAdapter<Day> {
         }
     }
 
+    /**
+     * Bind item view when has event.
+     *
+     * @param holder {@link BaseViewHolder}
+     * @param day    {@link Day}
+     */
     private void bindEventItemView(BaseViewHolder holder, Day day) {
         // Just load first event for....mock.
         Event event = day.getEvents().get(0);
 
         // Set duration data.
-        String startAt = event.isAllDay()? "ALL DAY" : CalendarHelper.getHour(event.eventStart);
+        String startAt = event.isAllDay() ? "ALL DAY" : CalendarHelper.getHour(event.eventStart);
         String duration = event.isAllDay() ? "1d" : CalendarHelper.getInterval(event.eventStart, event.eventEnd);
         SpannableString durationSpannableString = new SpannableString(startAt + "\n" + duration);
         durationSpannableString.setSpan(new ForegroundColorSpan(Color.BLACK),
@@ -94,6 +108,11 @@ public class AgendaAdapter extends BaseAdapter<Day> {
         }
     }
 
+    /**
+     * Bind item view when has no event.
+     *
+     * @param holder {@link BaseViewHolder}
+     */
     private void bindNoEventItemView(BaseViewHolder holder) {
         holder.setText(R.id.event_title_tv, mContext.getString(R.string.no_event_title))
                 .setTextColorRes(R.id.event_title_tv, R.color.textColorGrey)
@@ -103,6 +122,15 @@ public class AgendaAdapter extends BaseAdapter<Day> {
                 .setTextSizeInSp(R.id.event_title_tv, TITLE_SIZE_NO_EVENT);
     }
 
+    /**
+     * Bind item view with weather data.
+     * <p>
+     * NOTE: this operation will compare every item, if weather data is equals this day and it will
+     * attach to this day.
+     *
+     * @param holder {@link BaseViewHolder}
+     * @param day    {@link Day}
+     */
     private void bindWeatherItemView(BaseViewHolder holder, Day day) {
         LinearLayout weatherLayout = holder.getView(R.id.weather_container_layout);
         if (null != mWeatherDataSource && mWeatherDataSource.getLatestWeather().size() > 0) {
@@ -131,7 +159,13 @@ public class AgendaAdapter extends BaseAdapter<Day> {
         }
     }
 
-    public void updateWeatherDataSource(WeatherDataSource weatherDataSource) {
+    /**
+     * Update weather data and invalidate data.
+     * {@see} {@link com.yat3s.calendar.data.DataRepository#retrieveWeatherData(double, double)}
+     *
+     * @param weatherDataSource {@link WeatherDataSource}
+     */
+    public void updateWeatherDataSource(@NonNull WeatherDataSource weatherDataSource) {
         mWeatherDataSource = weatherDataSource;
         notifyDataSetChanged();
     }

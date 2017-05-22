@@ -25,6 +25,8 @@ import static java.lang.Long.parseLong;
  * Created by Yat3s on 16/05/2017.
  * Email: hawkoyates@gmail.com
  * GitHub: https://github.com/yat3s
+ * <p>
+ * The utils / helper for process calendar date of calendar data.
  */
 public class CalendarHelper {
     private static final String TAG = "CalendarHelper";

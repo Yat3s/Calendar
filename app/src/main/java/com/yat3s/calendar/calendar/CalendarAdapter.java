@@ -15,6 +15,10 @@ import com.yat3s.calendar.data.model.Day;
  * Created by Yat3s on 14/05/2017.
  * Email: hawkoyates@gmail.com
  * GitHub: https://github.com/yat3s
+ * <p>
+ * The adapter of calendar list including process selectable item
+ * {@see} {@link #updateCurrentSelectedItem}
+ * {@link #setOnItemSelectedListener(OnItemSelectedListener)}
  */
 public class CalendarAdapter extends BaseAdapter<Day> {
     private static final String TAG = "CalendarAdapter";
@@ -93,6 +97,9 @@ public class CalendarAdapter extends BaseAdapter<Day> {
     /**
      * Updated current selected item, it contain check current item and
      * uncheck last item.
+     * <p>
+     * {@see} {@link RecyclerView#findViewHolderForLayoutPosition(int)} will find view holder and
+     * update status immediately.
      *
      * @param selectedPosition
      */
@@ -127,6 +134,11 @@ public class CalendarAdapter extends BaseAdapter<Day> {
         }
     }
 
+    /**
+     * Get recycler view when this adapter attach to recycler view.
+     *
+     * @param recyclerView
+     */
     @Override
     public void onAttachedToRecyclerView(RecyclerView recyclerView) {
         mRecyclerView = recyclerView;

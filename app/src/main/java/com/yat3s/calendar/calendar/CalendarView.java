@@ -29,6 +29,10 @@ import butterknife.ButterKnife;
  * Created by Yat3s on 14/05/2017.
  * Email: hawkoyates@gmail.com
  * GitHub: https://github.com/yat3s
+ * <p>
+ * A custom view contain calendar list and some operations;
+ * {@see} {@link #setOnItemSelectedListener(CalendarAdapter.OnItemSelectedListener)}
+ * {@link #setCalendarDataSource(List)}
  */
 public class CalendarView extends FrameLayout {
     private static final String TAG = "CalendarView";
@@ -49,6 +53,7 @@ public class CalendarView extends FrameLayout {
     @BindView(R.id.calendar_rv)
     RecyclerView mCalendarRv;
 
+    // The adapter of calendar recycler view.
     private CalendarAdapter mCalendarAdapter;
 
     // Mark calendar view expand status.
@@ -65,6 +70,7 @@ public class CalendarView extends FrameLayout {
     // Calendar recycler view first & last visible item position.
     private int mFirstVisibleItemPosition, mLastVisibleItemPosition;
 
+    // Current scroll state of recycler view.
     private int mCurrentScrollState = RecyclerView.SCROLL_STATE_IDLE;
 
     // Calendar recycler view layout manager, contain item view...

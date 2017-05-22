@@ -29,8 +29,13 @@ import butterknife.OnClick;
 
 import static com.yat3s.calendar.R.id.toolbar;
 
+/**
+ * The main activity contains all fragment and tab switch processing.
+ */
 public class MainActivity extends AppCompatActivity {
     private static final String TAG = "MainActivity";
+
+    // The Github url of this project.
     private static final String GITHUB_URL = "https://github.com/Yat3s/Calendar";
 
     // The tab item index.
@@ -66,11 +71,13 @@ public class MainActivity extends AppCompatActivity {
     @BindView(R.id.menu_option_optional)
     IconTextView mMenuOptionOptional;
 
+    // The fragments attached to activity.
     private InboxFragment mInboxFragment;
     private CalendarFragment mCalendarFragment;
     private FileFragment mFileFragment;
     private ContactFragment mContactFragment;
 
+    // Current tab index, default is NAVIGATION_TAB_INDEX_CALENDAR.
     private int mCurrentShowTabIndex = NAVIGATION_TAB_INDEX_CALENDAR;
 
     @Override
